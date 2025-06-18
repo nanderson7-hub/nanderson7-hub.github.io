@@ -242,59 +242,59 @@
         const dadosPiscicultura = {
             densidadeEstocagem: {
                 escavado: {
-                    alevinagem: { matrinxa: 50, tambaqui: 40, pirarucu: 5 },
-                    recria: { matrinxa: 15, tambaqui: 10, pirarucu: 2},
-                    engorda: { matrinxa: 5, tambaqui: 3, pirarucu: 0.5}
+                    alevinagem: { matrinxa: 30, tambaqui: 40, pirarucu: 5 },
+                    recria: { matrinxa: 10, tambaqui: 10, pirarucu: 2},
+                    engorda: { matrinxa: 0.5, tambaqui: 0.5, pirarucu: 0.5}
                 },
                 rede: {
                     alevinagem: { matrinxa: 200, tambaqui: 150, pirarucu: 20},
-                    recria: { matrinxa: 50, tambaqui: 40, pirarucu: 5},
-                    engorda: { matrinxa: 60, tambaqui: 15, pirarucu: 2}
+                    recria: { matrinxa: 100, tambaqui: 50, pirarucu: 5},
+                    engorda: { matrinxa: 30, tambaqui: 15, pirarucu: 2}
                 },
                 ras: { // Sistemas de Recirculação em Aquicultura
-                    alevinagem: { matrinxa: 500, tambaqui: 400, pirarucu: 50},
-                    recria: { matrinxa: 200, tambaqui: 150, pirarucu: 15},
-                    engorda: { matrinxa: 100, tambaqui: 80, pirarucu: 5}
+                    alevinagem: { matrinxa: 250, tambaqui: 250, pirarucu: 50},
+                    recria: { matrinxa: 100, tambaqui: 100, pirarucu: 15},
+                    engorda: { matrinxa: 30, tambaqui: 30, pirarucu: 5}
                 }
             },
             pesoAbateIdeal: {
                 matrinxa: 1.5, // kg
                 tambaqui: 3, // kg
-                pirarucu: 10,  // kg
+                pirarucu: 15,  // kg
             },
             // Parâmetros ideais da água por espécie
             limitesAgua: {
                 matrinxa: {
                     nome: "Matrinxã",
                     temp: { range: [25, 30], unit: "°C", lowRec: "Considerar aquecimento ou sombreamento.", highRec: "Aumentar sombreamento ou renovação de água." },
-                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
-                    oxi: { range: [3, 6], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o pH da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
                     alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
                     amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
                     nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
-                    nitrato: { range: [0, 50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
                     trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 tambaqui: {
                     nome: "Tambaqui",
                     temp: { range: [28, 32], unit: "°C", lowRec: "Aquecimento ou sombreamento para manter a faixa ideal.", highRec: "Aumentar sombreamento ou renovação de água." },
                     ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
-                    oxi: { range: [3, 6], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
                     alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
                     amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
                     nitrito: { range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
-                    nitrato: { range: [0, 50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
                     trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 pirarucu: {
                     nome: "Pirarucu",
                     temp: { range: [28, 36], unit: "°C", lowRec: "Manter temperatura elevada, usar aquecedores se necessário.", highRec: "Monitorar, mas pirarucu tolera altas temperaturas." },
                     ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial."},
-                    oxi: { range: [3, 6], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
+                    oxi: { range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
                     alc: { range: [30, 40], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { range: [0, 0.10], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata, verificar filtros." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata, verificar filtros." },
                     nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." },
-                    nitrato: { range: [1000, 3000], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    nitrato: { range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
                     trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 
@@ -302,17 +302,17 @@
             // Dados de ração por espécie e fase
             racao: {
                 matrinxa: {
-                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-2mm" },
-                    recria: { proteina: 35, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" },
+                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" },
+                    recria: { proteina: 36, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" },
                     engorda: { proteina: 28, taxa: [[500, 1500, 0.015, 2], [1500, Infinity, 0.01, 1]], pellet: "10-12mm" }
                 },
                 tambaqui: {
-                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-2mm" },
+                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" },
                     recria: { proteina: 35, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" },
                     engorda: { proteina: 28, taxa: [[500, 2500, 0.015, 2], [2500, Infinity, 0.01, 1]], pellet: "10-12mm" }
                 },
                 pirarucu: {
-                    alevinagem: { proteina: 50, taxa: [[0, 50, 0.08, 6], [50, 200, 0.06, 5]], pellet: "1-2mm" },
+                    alevinagem: { proteina: 50, taxa: [[0, 50, 0.08, 6], [50, 200, 0.06, 5]], pellet: "1-4mm" },
                     recria: { proteina: 45, taxa: [[200, 1000, 0.04, 4], [1000, 3000, 0.03, 3]], pellet: "2-4mm" },
                     engorda: { proteina: 40, taxa: [[3000, 10000, 0.02, 2], [10000, Infinity, 0.015, 1]], pellet: "10-12mm" }
                 }
@@ -399,9 +399,9 @@
                         <p class="mt-2"><strong>Recomendações para Tanque-Rede:</strong></p>
                         <ul class="list-disc list-inside ml-4">
                             <li>Verifique a integridade das redes regularmente para evitar fugas e entrada de predadores.</li>
-                            <li>Limpe as redes para evitar bioincrustação e garantir o fluxo de água.</li>
+                            <li>Limpe as redes para evitar entupimento e garantir o fluxo de água.</li>
                             <li>Monitore a correnteza e a profundidade da água no local de instalação.</li>
-                            <li>Evite sobrecarga de ração para não comprometer a qualidade da água ao redor.</li>
+                            <li>Evite sobrecarga de ração para não comprometer a qualidade da água ao redor dos tanques.</li>
                         </ul>
                     `;
                     break;
@@ -409,10 +409,11 @@
                     recomendacoesTanque = `
                         <p class="mt-2"><strong>Recomendações para Sistema RAS:</strong></p>
                         <ul class="list-disc list-inside ml-4">
-                            <li>A manutenção rigorosa dos filtros biológicos e mecânicos é crucial.</li>
+                            <li>A manutenção rigorosa dos filtros biológicos e mecânicos é importante.</li>
                             <li>Monitore constantemente os níveis de oxigênio, amônia, nitrito e nitrato.</li>
                             <li>Garanta um bom sistema de aeração e oxigenação.</li>
-                            <li>Tenha um plano de contingência para falhas de energia ou equipamentos.</li>
+                            <li>Para caso de falta de energia tenha um gerador .</li>
+                             <li>Tenha areadores e bombas resevas.</li>
                         </ul>
                     `;
                     break;
@@ -594,7 +595,7 @@
                 <ul class="list-disc list-inside ml-4">
                     <li>Observe o comportamento dos peixes durante a alimentação. Se sobrarem ração, reduza a quantidade na próxima refeição.</li>
                     <li>Outra forma de alimentação é por meio da <i>ad libtum</i>, oferecendo alimento à vontade até que o peixe perca o interesse.
-                    <li>Distribua a ração de forma uniforme para garantir que todos os peixes tenham acesso.</li>
+                    <li>Distribua a ração de forma uniforme para garantir que todos os peixes tenham acesso sempre com o vento nas suas costas para que a ração não encoste na beira do viveiro.</li>
                     <li>Evite alimentar em excesso, pois isso pode comprometer a qualidade da água.</li>
                     <li>Em dias frios ou com baixa oxigenação, reduza a quantidade de ração ofertada.</li>
                     <li>Armazene a ração em local seco e arejado, protegido de roedores e insetos.</li>
