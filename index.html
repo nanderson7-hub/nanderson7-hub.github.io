@@ -16,10 +16,11 @@
             font-family: 'Inter', sans-serif;
             background-image: url('./img/img-fundo.png'); /* Cor de fundo original */
             background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+              min-height: 100vh;
+        
         }
         /* Custom styles for alert classes */
         .alerta-verde {
@@ -59,7 +60,7 @@
 <body class="p-4">
     <div class="container max-w-2xl mx-auto p-8 bg-black bg-opacity-80 rounded-xl shadow-lg box-border text-gray-100">
         <h2 class="text-center text-teal-400 text-3xl font-bold mb-6 mt-2">
-            <img src="/img/img-logo.png" alt="SmartPiscis Logo" class="inline-block align-middle mr-2 rounded-full" width="70" height="70" onerror="this.style.display='none'">
+            <img src="/img/img-logo.png" alt="SmartPiscis Logo" class="inline-block align-middle mr-2 rounded-full" width="70" height="70">
             SmartPiscis 🐟
         </h2>
 
@@ -74,19 +75,19 @@
 
         <div id="formEstrutura">
             <label for="comprimento" class="block mt-2 mb-2 font-semibold text-gray-200">Comprimento (m):</label>
-            <input type="text" inputmode="decimal" id="comprimento"
+            <input type="number" id="comprimento" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="largura" class="block mb-2 font-semibold text-gray-200">Largura (m):</label>
-            <input type="text" inputmode="decimal" id="largura"
+            <input type="number" id="largura" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="profundidade" class="block mb-2 font-semibold text-gray-200">Profundidade média (m):</label>
-            <input type="text" inputmode="decimal" id="profundidade"
+            <input type="number" id="profundidade" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
-            <label for="densidade" class="block mb-2 font-semibold text-gray-200">Densidade (peixes/m² - opcional para cálculo inicial):</label>
-            <input type="text" inputmode="decimal" id="densidade" placeholder="Deixe em branco para sugestão"
+            <label for="densidade" class="block mb-2 font-semibold text-gray-200">Densidade (peixes/m³ ou peixe/m²-opcional):</label>
+            <input type="number" id="densidade" min="0" step="0.01" placeholder="Deixe em branco para sugestão"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="tipoTanque" class="block mb-2 font-semibold text-gray-200">Tipo de Tanque:</label>
@@ -114,7 +115,7 @@
             </select>
 
             <label for="pesoMedioEstrutura" class="block mb-2 font-semibold text-gray-200">Peso médio dos peixes na hora da venda (kg):</label>
-            <input type="text" inputmode="decimal" id="pesoMedioEstrutura"
+            <input type="number" id="pesoMedioEstrutura" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <button onclick="calcularEstrutura()"
@@ -133,35 +134,35 @@
             </select>
 
             <label for="temperatura" class="block mb-2 font-semibold text-gray-200">Temperatura da Água (°C):</label>
-            <input type="text" inputmode="decimal" id="temperatura"
+            <input type="number" id="temperatura" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="ph" class="block mb-2 font-semibold text-gray-200">pH da Água:</label>
-            <input type="text" inputmode="decimal" id="ph"
+            <input type="number" id="ph" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="oxigenio" class="block mb-2 font-semibold text-gray-200">Oxigênio Dissolvido (mg/L):</label>
-            <input type="text" inputmode="decimal" id="oxigenio"
+            <input type="number" id="oxigenio" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="alcalinidade" class="block mb-2 font-semibold text-gray-200">Alcalinidade Total (mg/L CaCO₃):</label>
-            <input type="text" inputmode="decimal" id="alcalinidade"
+            <input type="number" id="alcalinidade" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="amonia" class="block mb-2 font-semibold text-gray-200">Amônia Total (mg/L):</label>
-            <input type="text" inputmode="decimal" id="amonia"
+            <input type="number" id="amonia" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="nitrito" class="block mb-2 font-semibold text-gray-200">Nitrito (mg/L):</label>
-            <input type="text" inputmode="decimal" id="nitrito"
+            <input type="number" id="nitrito" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="nitrato" class="block mb-2 font-semibold text-gray-200">Nitrato (mg/L):</label>
-            <input type="text" inputmode="decimal" id="nitrato"
+            <input type="number" id="nitrato" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="transparencia" class="block mb-2 font-semibold text-gray-200">Transparência da Água (cm - Disco de Secchi):</label>
-            <input type="text" inputmode="decimal" id="transparencia"
+            <input type="number" id="transparencia" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <button onclick="analisarAgua()"
@@ -188,7 +189,7 @@
             </select>
 
             <label for="pesoMedioRacao" class="block mb-2 font-semibold text-gray-200">Peso médio dos peixes (g):</label>
-            <input type="text" inputmode="decimal" id="pesoMedioRacao"
+            <input type="number" id="pesoMedioRacao" min="0" step="0.01"
                 class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
 
             <label for="quantidadePeixes" class="block mb-2 font-semibold text-gray-200">Quantidade de Peixes:</label>
@@ -202,7 +203,7 @@
         </div>
 
         <div id="resultado" class="mt-6 p-4 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 text-base">
-        </div>
+            </div>
 
         <div class="social flex flex-col sm:flex-row gap-4 justify-between mt-6">
             <button onclick="compartilharWhatsApp()"
@@ -223,16 +224,28 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        // --- DATA ---
+        // Função para alternar entre as calculadoras
+        function alternarCalculadora() {
+            const tipo = document.getElementById("tipoCalculadora").value;
+            document.getElementById("formEstrutura").style.display = tipo === "estrutura" ? "block" : "none";
+            document.getElementById("formAgua").style.display = tipo === "agua" ? "block" : "none";
+            document.getElementById("formRacao").style.display = tipo === "racao" ? "block" : "none";
+            document.getElementById("resultado").innerHTML = ""; // Limpa o resultado ao trocar de calculadora
+        }
+
+        // Função para exibir mensagens de erro
+        function exibirErro(mensagem) {
+            document.getElementById("resultado").innerHTML = `<div class="alerta-vermelho"><strong>Erro:</strong> ${mensagem}</div>`;
+        }
+
+        // Dados de referência para densidade de estocagem e peso de abate por espécie/fase
         const dadosPiscicultura = {
             densidadeEstocagem: {
-                // TANQUE ESCAVADO: densidade em peixes/m²
                 escavado: {
                     alevinagem: { matrinxa: 30, tambaqui: 40, pirarucu: 5 },
                     recria: { matrinxa: 10, tambaqui: 10, pirarucu: 2},
                     engorda: { matrinxa: 0.5, tambaqui: 0.5, pirarucu: 0.5}
                 },
-                // TANQUE-REDE E RAS: densidade em peixes/m³
                 rede: {
                     alevinagem: { matrinxa: 200, tambaqui: 150, pirarucu: 20},
                     recria: { matrinxa: 100, tambaqui: 50, pirarucu: 5},
@@ -249,41 +262,44 @@
                 tambaqui: 3, // kg
                 pirarucu: 15,  // kg
             },
+            // Parâmetros ideais da água por espécie
             limitesAgua: {
                 matrinxa: {
                     nome: "Matrinxã",
-                    temp: { nome: "Temperatura", range: [25, 30], unit: "°C", lowRec: "Considerar aquecimento ou sombreamento.", highRec: "Aumentar sombreamento ou renovação de água." },
-                    ph: { nome: "pH", range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o pH da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
-                    oxi: { nome: "Oxigênio Dissolvido", range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
-                    alc: { nome: "Alcalinidade", range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { nome: "Amônia Total", range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
-                    nitrito: { nome: "Nitrito", range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
-                    nitrato: { nome: "Nitrato", range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { nome: "Transparência", range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    temp: { range: [25, 30], unit: "°C", lowRec: "Considerar aquecimento ou sombreamento.", highRec: "Aumentar sombreamento ou renovação de água." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o pH da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
+                    nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 tambaqui: {
                     nome: "Tambaqui",
-                    temp: { nome: "Temperatura", range: [28, 32], unit: "°C", lowRec: "Aquecimento ou sombreamento para manter a faixa ideal.", highRec: "Aumentar sombreamento ou renovação de água." },
-                    ph: { nome: "pH", range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
-                    oxi: { nome: "Oxigênio Dissolvido", range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
-                    alc: { nome: "Alcalinidade", range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { nome: "Amônia Total", range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
-                    nitrito: { nome: "Nitrito", range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
-                    nitrato: { nome: "Nitrato", range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { nome: "Transparência", range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    temp: { range: [28, 32], unit: "°C", lowRec: "Aquecimento ou sombreamento para manter a faixa ideal.", highRec: "Aumentar sombreamento ou renovação de água." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
+                    nitrito: { range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 pirarucu: {
                     nome: "Pirarucu",
-                    temp: { nome: "Temperatura", range: [28, 36], unit: "°C", lowRec: "Manter temperatura elevada, usar aquecedores se necessário.", highRec: "Monitorar, mas pirarucu tolera altas temperaturas." },
-                    ph: { nome: "pH", range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial."},
-                    oxi: { nome: "Oxigênio Dissolvido", range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
-                    alc: { nome: "Alcalinidade", range: [30, 40], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { nome: "Amônia Total", range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata, verificar filtros." },
-                    nitrito: { nome: "Nitrito", range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." },
-                    nitrato: { nome: "Nitrato", range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { nome: "Transparência", range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    temp: { range: [28, 36], unit: "°C", lowRec: "Manter temperatura elevada, usar aquecedores se necessário.", highRec: "Monitorar, mas pirarucu tolera altas temperaturas." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial."},
+                    oxi: { range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
+                    alc: { range: [30, 40], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata, verificar filtros." },
+                    nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." },
+                    nitrato: { range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
+                
             },
+            // Dados de ração por espécie e fase
             racao: {
                 matrinxa: {
                     alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" },
@@ -300,10 +316,12 @@
                     recria: { proteina: 45, taxa: [[200, 1000, 0.04, 4], [1000, 3000, 0.03, 3]], pellet: "2-4mm" },
                     engorda: { proteina: 40, taxa: [[3000, 10000, 0.02, 2], [10000, Infinity, 0.015, 1]], pellet: "10-12mm" }
                 }
+                
             }
         };
 
-        // --- SETUP ---
+
+         // --- SETUP ---
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('tipoTanque').addEventListener('change', atualizarLabelDensidade);
             atualizarLabelDensidade();
@@ -346,7 +364,7 @@
             }
         }
 
-        // --- CÁLCULO DE ESTRUTURA ---
+       // --- CÁLCULO DE ESTRUTURA ---
         function calcularEstrutura() {
             const comprimento = parseLocalFloat(document.getElementById("comprimento").value);
             const largura = parseLocalFloat(document.getElementById("largura").value);
@@ -446,190 +464,240 @@
             `;
         }
 
-        // --- CÁLCULO DE ANÁLISE DE ÁGUA ---
+        // Função para analisar a qualidade da água
         function analisarAgua() {
             const especie = document.getElementById("especieAgua").value;
-            const inputs = {
-                temp: parseLocalFloat(document.getElementById("temperatura").value),
-                ph: parseLocalFloat(document.getElementById("ph").value),
-                oxi: parseLocalFloat(document.getElementById("oxigenio").value),
-                alc: parseLocalFloat(document.getElementById("alcalinidade").value),
-                amonia: parseLocalFloat(document.getElementById("amonia").value),
-                nitrito: parseLocalFloat(document.getElementById("nitrito").value),
-                nitrato: parseLocalFloat(document.getElementById("nitrato").value),
-                trans: parseLocalFloat(document.getElementById("transparencia").value)
-            };
+            const temperatura = parseFloat(document.getElementById("temperatura").value);
+            const ph = parseFloat(document.getElementById("ph").value);
+            const oxigenio = parseFloat(document.getElementById("oxigenio").value);
+            const alcalinidade = parseFloat(document.getElementById("alcalinidade").value);
+            const amonia = parseFloat(document.getElementById("amonia").value);
+            const nitrito = parseFloat(document.getElementById("nitrito").value);
+            const nitrato = parseFloat(document.getElementById("nitrato").value);
+            const transparencia = parseFloat(document.getElementById("transparencia").value);
 
-            const limites = dadosPiscicultura.limitesAgua[especie];
-            if (!limites) {
-                return exibirErro("Parâmetros não encontrados para a espécie selecionada.");
+            // Validação de campos obrigatórios
+            if (
+                isNaN(temperatura) || isNaN(ph) || isNaN(oxigenio) ||
+                isNaN(alcalinidade) || isNaN(amonia) || isNaN(nitrito) ||
+                isNaN(nitrato) || isNaN(transparencia)
+            ) {
+                return exibirErro("Por favor, preencha todos os campos da análise da água.");
             }
 
-            let resultadoHTML = `<h3 class="text-xl font-bold text-teal-300 mb-4">💧 Análise da Qualidade da Água para ${limites.nome}</h3>`;
-            let temProblema = false;
-            let camposPreenchidos = 0;
+            const faixa = dadosPiscicultura.limitesAgua[especie];
+            if (!faixa) return exibirErro("Espécie inválida para análise de água.");
 
-            function verificarParametro(paramKey, valorInput) {
-                if (isNaN(valorInput)) return ''; 
-                camposPreenchidos++;
-                const paramInfo = limites[paramKey];
-                if (!paramInfo) return '';
+            let resultadoHtml = `<h3 class="text-xl font-bold text-teal-300 mb-4">🔍 Análise da Água para ${faixa.nome}</h3>`;
+            let statusGeral = "Excelente"; // Assume excelente, rebaixa se houver problemas
+            let problemasEncontrados = 0;
 
-                const [min, max] = paramInfo.range;
-                let statusClass = 'alerta-verde';
-                let statusTexto = 'Ideal';
-                let recomendacao = '';
+            // Função auxiliar para verificar e formatar cada parâmetro
+            function verificarParametro(parametroNome, valor, dadosParametro) {
+                const [min, max] = dadosParametro.range;
+                const unidade = dadosParametro.unit;
+                let dentro = false;
+                let comentario = "";
+                let classeAlerta = "alerta-verde"; // Padrão para ideal
 
-                if (valorInput < min) {
-                    statusClass = paramKey === 'oxi' ? 'alerta-vermelho' : 'alerta-amarelo';
-                    statusTexto = 'Abaixo do Ideal';
-                    recomendacao = paramInfo.lowRec || '';
-                    temProblema = true;
-                } else if (valorInput > max) {
-                    statusClass = 'alerta-vermelho';
-                    statusTexto = 'Acima do Ideal';
-                    recomendacao = paramInfo.highRec || '';
-                    temProblema = true;
+                if (parametroNome === "Amônia" || parametroNome === "Nitrito" || parametroNome === "Nitrato") {
+                    // Para amônia, nitrito, nitrato, o valor deve ser ABAIXO do máximo
+                    dentro = valor <= max;
+                    if (!dentro) {
+                        comentario = `Atenção! Valor acima do recomendado (${max} ${unidade}).<br><strong>Sugestão:</strong> ${dadosParametro.highRec}`;
+                        classeAlerta = "alerta-vermelho";
+                        problemasEncontrados++;
+                        if (statusGeral === "Excelente") statusGeral = "Atenção";
+                    } else {
+                        comentario = "Dentro do ideal.";
+                    }
+                } else {
+                    // Para outros parâmetros, o valor deve estar DENTRO da faixa
+                    dentro = valor >= min && valor <= max;
+                    if (!dentro) {
+                        if (valor < min) {
+                            comentario = `Atenção! Valor abaixo do recomendado (${min} a ${max} ${unidade}).<br><strong>Sugestão:</strong> ${dadosParametro.lowRec}`;
+                        } else { // valor > max
+                            comentario = `Atenção! Valor acima do recomendado (${min} a ${max} ${unidade}).<br><strong>Sugestão:</strong> ${dadosParametro.highRec}`;
+                        }
+                        classeAlerta = "alerta-amarelo";
+                        problemasEncontrados++;
+                        if (statusGeral === "Excelente") statusGeral = "Atenção";
+                    } else {
+                        comentario = "Dentro do ideal.";
+                    }
                 }
 
-                let html = `<div class="${statusClass}">`;
-                html += `<strong>${paramInfo.nome}:</strong> ${formatarNumeroBR(valorInput)} ${paramInfo.unit || ''} - <strong>Status: ${statusTexto}</strong>`;
-                if (recomendacao) {
-                    html += `<p class="mt-2 text-sm">${recomendacao}</p>`;
+                if (classeAlerta === "alerta-vermelho") {
+                    statusGeral = "Crítico";
+                } else if (classeAlerta === "alerta-amarelo" && statusGeral !== "Crítico") {
+                    statusGeral = "Atenção";
                 }
-                html += `</div>`;
-                return html;
+
+                const icone = dentro ? "✅" : "❌";
+                return `<div class="${classeAlerta} mb-2 p-2 rounded-md">
+                            ${icone} <strong>${parametroNome}:</strong> ${valor} ${unidade}<br>
+                            <span class="text-sm">${comentario}</span>
+                        </div>`;
             }
 
-            for (const key in inputs) {
-                resultadoHTML += verificarParametro(key, inputs[key]);
-            }
-            
-            if (camposPreenchidos === 0) {
-                return exibirErro("Por favor, preencha pelo menos um campo para análise.");
+            resultadoHtml += verificarParametro("Temperatura", temperatura, faixa.temp);
+            resultadoHtml += verificarParametro("pH", ph, faixa.ph);
+            resultadoHtml += verificarParametro("Oxigênio Dissolvido", oxigenio, faixa.oxi);
+            resultadoHtml += verificarParametro("Alcalinidade Total", alcalinidade, faixa.alc);
+            resultadoHtml += verificarParametro("Amônia Total", amonia, faixa.amonia);
+            resultadoHtml += verificarParametro("Nitrito", nitrito, faixa.nitrito);
+            resultadoHtml += verificarParametro("Nitrato", nitrato, faixa.nitrato);
+            resultadoHtml += verificarParametro("Transparência", transparencia, faixa.trans);
+
+            let statusGeralMensagem = "";
+            switch (statusGeral) {
+                case "Excelente":
+                    statusGeralMensagem = `<div class="alerta-verde mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}! Suas condições estão ótimas para o cultivo de ${faixa.nome}. Continue monitorando!</div>`;
+                    break;
+                case "Atenção":
+                    statusGeralMensagem = `<div class="alerta-amarelo mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}. Alguns parâmetros exigem atenção. Revise as recomendações acima e tome as ações necessárias.</div>`;
+                    break;
+                case "Crítico":
+                    statusGeralMensagem = `<div class="alerta-vermelho mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}! Condições críticas detectadas. Ações corretivas urgentes são necessárias para evitar perdas de peixes.</div>`;
+                    break;
             }
 
-            if (!temProblema) {
-                 resultadoHTML += `<div class="alerta-verde"><strong>Parabéns!</strong> Todos os parâmetros inseridos estão dentro da faixa ideal para a criação de ${limites.nome}.</div>`;
-            }
-
-            document.getElementById("resultado").innerHTML = resultadoHTML;
+            resultadoHtml += statusGeralMensagem;
+            document.getElementById("resultado").innerHTML = resultadoHtml;
         }
 
-        // --- CÁLCULO DE RAÇÃO ---
+        // Função para calcular a ração
         function calcularRacao() {
             const especie = document.getElementById("especieRacao").value;
             const fase = document.getElementById("faseRacao").value;
-            const pesoMedio = parseLocalFloat(document.getElementById("pesoMedioRacao").value);
-            const quantidadePeixes = parseInt(document.getElementById("quantidadePeixes").value, 10);
+            const pesoMedioGramas = parseFloat(document.getElementById("pesoMedioRacao").value);
+            const quantidadePeixes = parseInt(document.getElementById("quantidadePeixes").value);
 
-            if (isNaN(pesoMedio) || isNaN(quantidadePeixes)) {
-                return exibirErro("Por favor, preencha o Peso Médio e a Quantidade de Peixes.");
-            }
-             if (pesoMedio <= 0 || quantidadePeixes <= 0) {
-                return exibirErro("Os valores de peso médio e quantidade de peixes devem ser maiores que zero.");
+            // Validação de campos obrigatórios
+            if (isNaN(pesoMedioGramas) || isNaN(quantidadePeixes) || pesoMedioGramas <= 0 || quantidadePeixes <= 0) {
+                return exibirErro("Por favor, preencha o Peso médio dos peixes (g) e a Quantidade de Peixes corretamente.");
             }
 
-            const dadosRacao = dadosPiscicultura.racao[especie]?.[fase];
+            const dadosRacao = dadosPiscicultura.racao[especie][fase];
             if (!dadosRacao) {
-                return exibirErro("Não há dados de ração para a combinação selecionada.");
+                return exibirErro("Não foi possível encontrar dados de ração para a espécie e fase selecionadas.");
             }
 
-            let taxaAlimentar = 0;
-            let numeroRefeicoes = 0;
-            let faixaEncontrada = false;
+            let taxaAlimentacao = 0;
+            let refeicoes = 0;
 
-            for (const faixa of dadosRacao.taxa) {
-                const [minPeso, maxPeso, taxa, refeicoes] = faixa;
-                if (pesoMedio >= minPeso && pesoMedio < maxPeso) {
-                    taxaAlimentar = taxa;
-                    numeroRefeicoes = refeicoes;
-                    faixaEncontrada = true;
+            // Encontrar a taxa de alimentação e refeições com base no peso médio
+            for (const range of dadosRacao.taxa) {
+                const [minPeso, maxPeso, taxa, numRefeicoes] = range;
+                if (pesoMedioGramas >= minPeso && pesoMedioGramas <= maxPeso) {
+                    taxaAlimentacao = taxa;
+                    refeicoes = numRefeicoes;
                     break;
                 }
             }
-            
-            if (!faixaEncontrada) {
-                 return exibirErro(`Não foi encontrada uma faixa de alimentação para peixes com ${formatarNumeroBR(pesoMedio)}g.`);
+
+            if (taxaAlimentacao === 0) {
+                return exibirErro("Não foi possível determinar a taxa de alimentação para o peso médio informado. Verifique a faixa de peso.");
             }
 
-            const biomassaTotalKg = (quantidadePeixes * pesoMedio) / 1000; // em kg
-            const quantidadeRacaoDiariaKg = biomassaTotalKg * taxaAlimentar;
-            const quantidadePorRefeicaoKg = quantidadeRacaoDiariaKg / numeroRefeicoes;
+            const pesoMedioKg = pesoMedioGramas / 1000;
+            const biomassa = pesoMedioKg * quantidadePeixes;
+            const consumoDiarioKg = biomassa * taxaAlimentacao;
+            const porRefeicaoKg = consumoDiarioKg / refeicoes;
+
+            const nivelProteina = dadosRacao.proteina;
+            const tamanhoPellet = dadosRacao.pellet;
+
+            let recomendacoesRacao = `
+                <p class="mt-2"><strong>Recomendações de Manejo da Ração:</strong></p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Observe o comportamento dos peixes durante a alimentação. Se sobrarem ração, reduza a quantidade na próxima refeição.</li>
+                    <li>Outra forma de alimentação é por meio da <i>ad libtum</i>, oferecendo alimento à vontade até que o peixe perca o interesse.
+                    <li>Distribua a ração de forma uniforme para garantir que todos os peixes tenham acesso sempre com o vento nas suas costas para que a ração não encoste na beira do viveiro.</li>
+                    <li>Evite alimentar em excesso, pois isso pode comprometer a qualidade da água.</li>
+                    <li>Em dias frios ou com baixa oxigenação, reduza a quantidade de ração ofertada.</li>
+                    <li>Armazene a ração em local seco e arejado, protegido de roedores e insetos.</li>
+                </ul>
+            `;
 
             document.getElementById("resultado").innerHTML = `
-                <h3 class="text-xl font-bold text-teal-300 mb-4">🍲 Resultado do Cálculo de Ração</h3>
-                <p><strong>Espécie:</strong> ${especie.charAt(0).toUpperCase() + especie.slice(1)}</p>
-                <p><strong>Fase:</strong> ${fase.charAt(0).toUpperCase() + fase.slice(1)}</p>
-                <p><strong>Biomassa Total Estimada:</strong> ${formatarNumeroBR(biomassaTotalKg)} kg</p>
-                <hr class="my-3 border-gray-600">
-                <div class="alerta-info">
-                    <h4 class="font-bold">Recomendações de Alimentação:</h4>
-                    <p><strong>Proteína Bruta (PB) recomendada:</strong> ${dadosRacao.proteina}%</p>
-                    <p><strong>Tamanho do Pellet:</strong> ${dadosRacao.pellet}</p>
-                    <p><strong>Taxa de alimentação diária:</strong> ${formatarNumeroBR(taxaAlimentar * 100)}% da biomassa</p>
-                </div>
-                <div class="alerta-verde mt-4">
-                    <h4 class="font-bold">Cálculo Diário:</h4>
-                    <p><strong>Quantidade total de ração por dia:</strong> ${formatarNumeroBR(quantidadeRacaoDiariaKg)} kg</p>
-                    <p><strong>Número de refeições por dia:</strong> ${numeroRefeicoes}</p>
-                    <p><strong>Quantidade por refeição:</strong> ${formatarNumeroBR(quantidadePorRefeicaoKg)} kg (ou ${formatarNumeroBR(quantidadePorRefeicaoKg * 1000)} g)</p>
-                </div>
-                <p class="mt-4 text-sm text-gray-400"><strong>Atenção:</strong> Estes valores são uma estimativa. Observe o comportamento dos peixes e a qualidade da água para ajustar a alimentação. Evite sobras de ração no viveiro.</p>
+                <h3 class="text-xl font-bold text-teal-300 mb-4">📊 Resultado da Calculadora de Ração</h3>
+                <p><strong>Espécie:</strong> ${dadosPiscicultura.limitesAgua[especie].nome}</p>
+                <p><strong>Fase de Criação:</strong> ${fase}</p>
+                <p><strong>Peso médio dos peixes:</strong> ${pesoMedioGramas.toFixed(2)} g (${pesoMedioKg.toFixed(3)} kg)</p>
+                <p><strong>Quantidade de Peixes:</strong> ${quantidadePeixes} peixes</p>
+                <p><strong>Biomassa Total:</strong> ${biomassa.toFixed(2)} kg</p>
+                <p><strong>Taxa de Alimentação Diária:</strong> ${(taxaAlimentacao * 100).toFixed(1)}% da biomassa</p>
+                <p><strong>Nível de Proteína Recomendado:</strong> ${nivelProteina}%</p>
+                <p><strong>Número de Refeições/dia:</strong> ${refeicoes}</p>
+                <p><strong>Tamanho do Pellet Recomendado:</strong> ${tamanhoPellet}</p>
+                <br>
+                <p class="text-xl font-bold text-teal-300">🍽️ Ração Diária Total: <span class="text-white">${consumoDiarioKg.toFixed(2)} kg</span></p>
+                <p class="text-xl font-bold text-teal-300">Ração por Refeição: <span class="text-white">${porRefeicaoKg.toFixed(2)} kg</span></p>
+                <br>
+                <h4 class="text-lg font-semibold text-teal-300 mb-2">Recomendações:</h4>
+                ${recomendacoesRacao}
             `;
         }
-        
-        // --- FUNÇÕES DE COMPARTILHAMENTO ---
-        function limparHtmlParaTexto(html) {
-            const tempDiv = document.createElement("div");
-            html = html.replace(/<\/p>/g, '\n').replace(/<\/li>/g, '\n').replace(/<br>/g, '\n').replace(/<hr[^>]*>/g, '\n---\n');
-            tempDiv.innerHTML = html;
-            let text = tempDiv.textContent || tempDiv.innerText || "";
-            text = text.replace(/(\s\s+)/g, ' ').replace(/(\n\s*)+/g, '\n').trim();
-            return text;
-        }
 
+        // Função para compartilhar no WhatsApp
         function compartilharWhatsApp() {
-            const resultadoDiv = document.getElementById('resultado');
-            if (!resultadoDiv.innerHTML.trim()) {
-                alert("Primeiro, calcule um resultado para compartilhar.");
+            const resultadoElement = document.getElementById("resultado");
+            if (!resultadoElement.innerText.trim()) {
+                // Using a custom modal/message box instead of alert()
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-white max-w-sm mx-auto">
+                        <h3 class="text-lg font-bold mb-4">Aviso!</h3>
+                        <p>Calcule primeiro para compartilhar o resultado.</p>
+                        <button onclick="this.closest('.fixed').remove()" class="mt-4 w-full p-2 bg-teal-600 rounded-md hover:bg-teal-700">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
                 return;
             }
-            
-            let textoCompartilhar = limparHtmlParaTexto(resultadoDiv.innerHTML);
-            textoCompartilhar = "🐟 *Resultado da Calculadora SmartPiscis* 🐟\n\n" + textoCompartilhar;
-            
+
+            const textoCompartilhar = `*Resultado da Calculadora de Piscicultura:*\n\n${resultadoElement.innerText}\n\nAcesse a calculadora: ${window.location.href}`;
             const urlWhatsApp = `https://wa.me/?text=${encodeURIComponent(textoCompartilhar)}`;
-            window.open(urlWhatsApp, '_blank');
+            window.open(urlWhatsApp, "_blank");
         }
 
+        // Função para baixar o resultado em PDF
         function baixarPDF() {
-            const { jsPDF } = window.jspdf;
-            const resultadoDiv = document.getElementById('resultado');
-
-            if (!resultadoDiv.innerHTML.trim()) {
-                alert("Primeiro, calcule um resultado para baixar.");
+            const resultadoElement = document.getElementById("resultado");
+            if (!resultadoElement.innerText.trim()) {
+                // Using a custom modal/message box instead of alert()
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-white max-w-sm mx-auto">
+                        <h3 class="text-lg font-bold mb-4">Aviso!</h3>
+                        <p>Calcule primeiro para gerar o PDF.</p>
+                        <button onclick="this.closest('.fixed').remove()" class="mt-4 w-full p-2 bg-teal-600 rounded-md hover:bg-teal-700">OK</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
                 return;
             }
 
+            const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            const textoParaPdf = limparHtmlParaTexto(resultadoDiv.innerHTML);
-            const tipoCalculoSelect = document.getElementById('tipoCalculadora');
-            const tipoCalculo = tipoCalculoSelect.options[tipoCalculoSelect.selectedIndex].text;
 
             doc.setFontSize(18);
-            doc.text(`SmartPiscis - Resultado de ${tipoCalculo}`, 14, 22);
+            doc.text("Relatório da Calculadora de Piscicultura", 105, 20, null, null, "center");
 
-            doc.setFontSize(11);
-            const lines = doc.splitTextToSize(textoParaPdf, 180); 
-            doc.text(lines, 14, 35);
-            
-            doc.setFontSize(8);
-            doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 14, 285);
-            doc.text("Criado por Nanderson Silva - nandersonsilva7@gmail.com", 14, 290);
+            doc.setFontSize(12);
+            // Split text to handle line breaks and fit page width
+            const textLines = doc.splitTextToSize(resultadoElement.innerText, 180); // Max width 180mm
+            doc.text(textLines, 15, 30);
 
-            doc.save(`Resultado_SmartPiscis_${tipoCalculo.replace(/ /g, '_')}.pdf`);
+            doc.save("relatorio-piscicultura.pdf");
         }
+
+        // Inicializa a calculadora na primeira opção ao carregar a página
+        document.addEventListener('DOMContentLoaded', alternarCalculadora);
     </script>
 </body>
 </html>
