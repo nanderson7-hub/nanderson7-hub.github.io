@@ -340,7 +340,7 @@
             document.getElementById("resultado").innerHTML = `<div class="alerta-vermelho"><strong>Erro:</strong> ${mensagem}</div>`;
         }
 
-        function formatarNumeroBR(numero, casasDecimais = 2) {
+        function formatarNumeroBR(numero, casasDecimais = 0) {
             if (isNaN(numero)) return numero;
             return numero.toLocaleString('pt-BR', {
                 minimumFractionDigits: casasDecimais,
@@ -614,7 +614,7 @@
                 <ul class="list-disc list-inside ml-4">
                     <li>Observe o comportamento dos peixes durante a alimentação. Se sobrarem ração, reduza a quantidade na próxima refeição.</li>
                     <li>Outra forma de alimentação é por meio da <i>ad libtum</i>, oferecendo alimento à vontade até que o peixe perca o interesse.
-                    <li>Distribua a ração de forma uniforme para garantir que todos os peixes tenham acesso sempre com o vento nas suas costas para que a ração não encoste na beira do viveiro.</li>
+                    <li>Distribua a ração de maneira uniforme, garantindo que todos os peixes tenham acesso ao alimento. Realize a distribuição sempre com o vento às suas costas, evitando que a ração seja levada para as bordas do viveiro.</li>
                     <li>Evite alimentar em excesso, pois isso pode comprometer a qualidade da água.</li>
                     <li>Em dias frios ou com baixa oxigenação, reduza a quantidade de ração ofertada.</li>
                     <li>Armazene a ração em local seco e arejado, protegido de roedores e insetos.</li>
