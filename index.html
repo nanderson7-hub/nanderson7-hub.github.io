@@ -270,10 +270,10 @@
                     ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o pH da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
                     oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
                     alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água retirando a água por baixo, verificar eficiência da filtragem biológica." },
                     nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
                     nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação realizando a troca de água por cima  para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 tambaqui: {
                     nome: "Tambaqui",
@@ -281,10 +281,10 @@
                     ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
                     oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
                     alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água, verificar eficiência da filtragem biológica." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, realizar a troca de água por baixo, verificar eficiência da filtragem biológica." },
                     nitrito: { range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
                     nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação realizando a troca de água por cima  para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 pirarucu: {
                     nome: "Pirarucu",
@@ -292,10 +292,10 @@
                     ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial."},
                     oxi: { range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
                     alc: { range: [30, 40], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
-                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata, verificar filtros." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, realizar a troca de água por baixo, verificar filtros." },
                     nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." },
                     nitrato: { range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
-                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação realizando a troca de água por cima  para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
                 },
                 
             },
@@ -340,7 +340,7 @@
             document.getElementById("resultado").innerHTML = `<div class="alerta-vermelho"><strong>Erro:</strong> ${mensagem}</div>`;
         }
 
-        function formatarNumeroBR(numero, casasDecimais = 0) {
+        function formatarNumeroBR(numero, casasDecimais = 1) {
             if (isNaN(numero)) return numero;
             return numero.toLocaleString('pt-BR', {
                 minimumFractionDigits: casasDecimais,
@@ -556,10 +556,10 @@
                     statusGeralMensagem = `<div class="alerta-verde mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}! Suas condições estão ótimas para o cultivo de ${faixa.nome}. Continue monitorando!</div>`;
                     break;
                 case "Atenção":
-                    statusGeralMensagem = `<div class="alerta-amarelo mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}. Alguns parâmetros exigem atenção. Revise as recomendações acima e tome as ações necessárias.</div>`;
+                    statusGeralMensagem = `<div class="alerta-amarelo mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}. Alguns parâmetros exigem atenção. Revise as recomendações acima e tome as ações necessárias.Em caso de dúvida, consulte o técnico responsável que atende sua propriedade.</div>`;
                     break;
                 case "Crítico":
-                    statusGeralMensagem = `<div class="alerta-vermelho mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}! Condições críticas detectadas. Ações corretivas urgentes são necessárias para evitar perdas de peixes.</div>`;
+                    statusGeralMensagem = `<div class="alerta-vermelho mt-4 text-lg font-bold">Status Geral da Água: ${statusGeral}! Condições críticas detectadas. Ações corretivas urgentes são necessárias para evitar perdas de peixes. Em caso de dúvida, consulte o técnico responsável que atende sua propriedade.</div>`;
                     break;
             }
 
@@ -618,6 +618,7 @@
                     <li>Evite alimentar em excesso, pois isso pode comprometer a qualidade da água.</li>
                     <li>Em dias frios ou com baixa oxigenação, reduza a quantidade de ração ofertada.</li>
                     <li>Armazene a ração em local seco e arejado, protegido de roedores e insetos.</li>
+                     <li>Em caso de dúvida, consulte o técnico responsável que atende sua propriedade.</li>
                 </ul>
             `;
 
