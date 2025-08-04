@@ -1,0 +1,468 @@
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+   header {
+      background-color: #001e26;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      color: #00e676;
+      font-size: 2.5rem;
+      margin: 0;
+  font-weight: 800; /* ou 400, se quiser mais fino */
+       text-shadow: 3px 3px 2px rgb(88, 85, 85);
+    }
+.logo-img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+}
+    
+.logo-header {
+  position: relative;
+  text-align: center;
+  padding: 15px;
+}
+
+.logo-img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 8px auto;
+}
+
+.logo-header h1 {
+  font-size: 1.8rem;
+  color: #00e676;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 2px 2px 3px #003300;
+}
+
+/* botão hambúrguer no canto superior direito */
+.menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #00e676;
+  cursor: pointer;
+  display: none;
+}
+nav {
+      background-color: #003840;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 10px;
+    }
+    nav a {
+      color: #e0f7fa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00e676;
+    }
+
+/* mostrar botão só em telas pequenas */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-bar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .nav-bar.show {
+    display: flex;
+  }
+}
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/img/Banner\ para\ site\ de\ loja\ de\ smartphones\ chamativo\ preto\ e\ roxo.png') center/cover no-repeat;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #00e676;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    .hero a {
+      background-color: #00e676;
+      padding: 15px 25px;
+      color: #003300;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .hero a:hover {
+      background-color: #03954f;
+    }
+
+    .modules-section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    .modules-section h2 {
+      margin-bottom: 30px;
+    }
+
+    .courses-section a{
+      background-color:  #03954f;
+      padding: 15px 25px;
+      color: #003300;
+      transition: background 0.3s ease;
+       text-decoration: none;
+       width: 150px;
+      margin:auto ;
+    }
+    .courses-section a:hover {
+      background-color: #00c466;
+    }
+
+    a i {
+  margin-right: 6px;
+  color: #00e676; /* verde para WhatsApp */
+  font-size: 1.2em;
+}
+
+a[href*="instagram.com"] i {
+  color: #c13584; /* roxo do Instagram */
+}
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    /* Garante altura e imagem 100% visível como fundo */
+.module-box.full-img {
+  position: relative;
+  width: 100%;
+  height: 240px; /* ajuste como preferir */
+  padding: 0;     /* remove espaço interno */
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent;
+  transition: transform 0.3s;
+}
+
+.module-box.full-img .module-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.module-box:hover {
+      transform: scale(1.05);
+    }
+    .courses-section {
+      background-color: #f4f4f4;
+      padding: 40px 20px;
+    }
+    
+    .footer {
+      background-color: #003840;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ============================================== */
+/* ESTILOS PARA A PÁGINA INICIAL (DISCIPLINAS)    */
+/* ============================================== */
+
+.disciplinas {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.disciplinas h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.disciplinas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.disciplina-card {
+    background-color: rgb(32, 122, 22);
+    border: 1px solid #130b0b;
+    border-radius: 8px; /* Cantos mais suaves */
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.disciplina-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.disciplina-card img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+
+.disciplina-card:hover img {
+    transform: scale(1.05);
+}
+
+.disciplina-card h3 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 15px 0 15px; /* Ajuste no espaçamento */
+}
+.disciplina-card p {
+    color: #0e0d0d;
+    margin: 10px 0 5;
+    text-align: center;
+    font-size: 15px;
+}
+
+.course-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px; /* Espaçamento interno */
+    margin: 15px; /* Espaçamento externo */
+    background: #105919;
+    font-weight: 600;
+    border-radius: 6px;
+    flex-grow: 1; /* Ocupa o espaço disponível */
+}
+
+.course-info div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-button {
+    display: block;
+    background-color: #e9ecee;
+    color: #0f0808;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 15px; /* Espaçamento externo */
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color:#00c466;
+    color: #FFFFFF;
+}
+
+/* ============================================== */
+/* ESTILOS PARA A PÁGINA SECUNDÁRIA DE CURSO      */
+/* ============================================== */
+
+.course-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    color: #333;
+}
+
+.course-main-content {
+    flex: 2;
+    min-width: 300px;
+}
+
+.course-main-content h2 {
+    font-size: 2rem;
+    color: #00c466;
+    margin-bottom: 20px;
+}
+
+.course-main-content h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.course-main-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.course-image {
+    width: 100%;
+    max-width: 300px; /* Limita o tamanho da imagem */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.course-sidebar {
+    flex: 1;
+    background-color: #4A4E69;
+    border-radius: 8px;
+    padding: 20px;
+    color: #fff;
+    min-width: 280px;
+}
+
+.prev-button {
+    display: block;
+    background-color: #e9ecee;
+    color: #0f0808;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 15px; /* Espaçamento externo */
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.prev-button:hover {
+    background-color: #00c466;
+    color: #FFFFFF;
+}
+
+.module {
+    margin-bottom: 10px;
+    border: 1px solid #5a5f80;
+    border-radius: 6px;
+}
+
+.module-header {
+    background-color: #5a5f80;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toggle-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.toggle-icon.open {
+    color: #99e2b4;
+}
+
+.module-content {
+    padding: 15px;
+    display: none;
+}
+
+.module-content.show {
+    display: block;
+}
+
+.module-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid #5a5f80;
+}
+.lesson-item a {
+    color: #FFFFFF; /* Cor do texto do link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    flex-grow: 1; /* Faz o link ocupar o espaço disponível */
+    transition: color 0.3s ease;
+}
+
+.lesson-item a:hover {
+    color: #99e2b4; /* Muda a cor ao passar o mouse, para combinar com o ícone de status */
+}
+
+.lesson-item:last-child {
+    border-bottom: none;
+}
+
+.lesson-icon {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.lesson-icon.book::before  { content: '📖'; color: #ffadad; }
+.lesson-icon.game::before  { content: '🎮'; color: #ffadad; }
+.lesson-icon.video::before { content: '💻'; color: #ffadad; }
+.lesson-icon.quiz::before  { content: '📝'; color: #ffadad; }
+
+.status-icon {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.status-icon.completed {
+    color: #99e2b4;
+}
+
+/* --- Rodapé --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #fcfbfb;
+    background: #941111;
+    margin-top: 40px; /* Garante um espaçamento superior */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    header .logo {
+        flex-direction: column; /* Logo e texto um em cima do outro */
+        gap: 10px;
+    }
+}

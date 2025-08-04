@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Piscicultura</title>
+    <!-- Inclui o Tailwind CSS para manter o estilo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        rel="shortcut icon"
+        href="/img/img.ico"
+        type="image/x-icon"
+    />
+    <style>
+
+         body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    * {
+  font-family: 'Inter', sans-serif;
+}
+
+      header {
+      background-color: #001e26;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      color: #00e676;
+      font-size: 2.5rem;
+      margin: 0;
+  font-weight: 800; /* ou 400, se quiser mais fino */
+       text-shadow: 3px 3px 2px rgb(88, 85, 85);
+    }
+.logo-img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+}
+    
+.logo-header {
+  position: relative;
+  text-align: center;
+  padding: 15px;
+}
+
+.logo-img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 8px auto;
+}
+
+.logo-header h1 {
+  font-size: 1.8rem;
+  color: #00e676;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 2px 2px 3px #003300;
+}
+
+/* botão hambúrguer no canto superior direito */
+.menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #00e676;
+  cursor: pointer;
+  display: none;
+}
+nav {
+      background-color: #003840;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 10px;
+    }
+    nav a {
+      color: #e0f7fa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #00e676;
+    }
+
+/* mostrar botão só em telas pequenas */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-bar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .nav-bar.show {
+    display: flex;
+  }
+}
+
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        p { text-align: justify;
+}
+
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+        /* Classe para esconder os passos */
+        .hidden-step {
+            display: none;
+        }
+        .footer {
+      background-color: #003840;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .footer p {
+        text-align: center;
+    }
+    </style>
+</head>
+
+<header>
+  <div class="logo-header">
+    <img src="./img/img-logo.png" alt="SmartPiscis" class="logo-img" />
+    <h1>SmartPiscis</h1>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+
+  <nav class="nav-bar" id="navBar">
+    <a href="index.html">Início</a>
+    <a href="index.html#modulos">Funcionalidades</a>
+    <a href="desenvolvimento.html">Cursos</a>
+    <a href="index.html#consultoria">Consultoria</a>
+    <a href="https://wa.me/55SEUNUMERO" target="_blank">Contato</a>
+  </nav>
+</header>
+
+
+<body class="bg-gray-100">
+
+    <main class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div id="curso-container" class="w-full max-w-lg mx-auto">
+
+            <!-- PASSO 1: Início -->
+            <div id="inicio" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md text-center animate-fade-in mx-auto">
+                <!-- Ícone Livro -->
+                <svg class="w-24 h-24 mx-auto text-blue-600 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 1 4 14.5V4A2 2 0 0 1 6 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Curso de Piscicultura</h1>
+                <p class="text-gray-600 mb-8">Aprenda o essencial para começar sua criação de peixes.</p>
+                <button onclick="mostrarPasso('curso_oQueE')" class="w-full bg-blue-600 text-white font-bold p-6 rounded-xl hover:bg-blue-700 transition-colors">
+                    <span class="text-xl">Começar a Aprender</span>
+                </button>
+            </div>
+
+            <!-- PASSO 2: O que é Piscicultura? -->
+            <div id="curso_oQueE" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 3: Tipos de Viveiros -->
+            <div id="curso_tiposViveiros" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 4: Espécies -->
+            <div id="curso_especiesAmazonas" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 5: Dimensionamento -->
+            <div id="curso_dimensionamento" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 6: Qualidade da Água -->
+            <div id="curso_qualidadeAgua" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 7: Ração e Biometria -->
+            <div id="curso_racaoBiometria" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+             <!-- PASSO 8: Custo de produção -->
+            <div id="curso_custoProducao" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 9: Conclusão -->
+            <div id="curso_conclusao" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+            <!-- PASSO 10: Atividade -->
+            <div id="curso_atividade" class="hidden-step">
+                <!-- Conteúdo do Módulo -->
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // --- LÓGICA DO CURSO EM JAVASCRIPT ---
+
+        const passos = [
+            'inicio', 'curso_oQueE', 'curso_tiposViveiros', 'curso_especiesAmazonas', 
+            'curso_dimensionamento', 'curso_qualidadeAgua', 'curso_racaoBiometria', 'curso_custoProducao',
+            'curso_conclusao', 'curso_atividade'
+        ];
+
+        const conteudos = {
+            curso_oQueE: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 11C22 11 16.5 14.5 12 14.5C7.5 14.5 2 11 2 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 9C2 9 6.5 12 12 12C17.5 12 22 9 22 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12V14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 9V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7L17 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 7L7 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">1. O que é Piscicultura?</h2>
+                    <p class="text-gray-600 mb-6">A arte de criar peixes de forma controlada para gerar renda e alimento.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-piscis.png" alt="Ilustração de uma criação de peixes na Amazônia" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p>A <strong>piscicultura</strong> é a criação de peixes em ambientes controlados, como tanques e viveiros. Diferente da pesca extrativa, onde se retira o peixe da natureza, na piscicultura nós controlamos todo o processo: a compra dos filhotes (alevinos), a alimentação, o controle da qualidade da água e a engorda até o ponto de venda (despesca).</p>
+                        <p>Na Amazônia, essa atividade é uma excelente alternativa econômica e sustentável, pois reduz a pressão sobre os estoques de peixes dos rios e gera emprego e renda para as comunidades locais.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('inicio')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_tiposViveiros')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+                    </div>
+                </div>`,
+            curso_tiposViveiros: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">2. Tipos de Viveiros (Sistemas de Criação)</h2>
+                    <p class="text-gray-600 mb-6">A "casa" do peixe é o primeiro passo para o sucesso.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="/img/img-viveiro.png" alt="Ilustração dos três tipos de viveiros" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p><strong>Viveiro Escavado:</strong> Os sistemas de criação de peixes em viveiros escavados ou em açudes,também chamados de represas, são os mais praticados no Brasil, para
+criar as principais espécies de peixes. Um "lago" artificial cavado em solo argiloso para não vazar água, não é recomendado para solo arenoso.
+<strong>Vantagem:</strong> Menor custo inicial, ambiente mais natural. <strong>Desvantagem:</strong> Exige mais espaço, mais difícil controlar predadores.</p>
+                        <p><strong>Tanque-Rede:</strong> São "gaiolas" flutuantes instaladas em rios, lagos ou açudes grandes.Neste sistema de criação, a qualidade da água é mantida pela sua livre e
+contínua circulação entre o tanque-rede e o ambiente. Por isso, é fundamental que a instalação seja feita em locais com boa qualidade de água ao longo de todo o ano, e que as telas e flutuadores sejam mantidos em
+ótimas condições de limpeza e funcionamento. <strong>Vantagem:</strong> Aproveita corpos d'água existentes. <strong>Desvantagem:</strong> Exige licença ambiental, risco de fugas e roubos, dependente da qualidade da água do local.</p>
+                        <p><strong>Tanque Circular:</strong> Feito de cimento, ferro ou geomembrana.É um tanque, geralmente circular ou retangular, onde a água é constantemente renovada e movimentada, criando um ambiente propício para o crescimento dos peixes. A circulação da água ajuda a distribuir nutrientes e oxigênio de forma mais homogênea, além de facilitar a remoção de resíduos é uma criação intensiva. 
+                            <strong>Vantagem:</strong> Alto controle da produção, maior produtividade. A circulação constante garante que os peixes tenham acesso a alimento e oxigênio de maneira uniforme. <strong>Desvantagem:</strong> Alto custo com equipamentos (bombas, filtros) e energia elétrica.</p>
+                        <p><strong>Canal de Igarapé:</strong> Um viveiro de canal de igarapé é uma técnica de piscicultura que utiliza o leito de um igarapé como espaço para a criação de peixes, como a matrinxã. Essa prática adapta o conceito de "raceway" ou fluxo contínuo, utilizando o canal do igarapé em vez de tanques de concreto. O sistema aproveita os recursos naturais da água e solo da região, sendo uma alternativa para a produção aquícola em áreas rurais
+                             <strong>Vantagem:</strong> Reduz o impacto ambiental ao utilizar os recursos naturais do igarapé,diminui os custos de produção ao aproveitar o ambiente natural para a criação e permite a produção de peixes em áreas rurais, onde há igarapés disponíveis.
+                             <strong>Desvantagem:</strong> riscos ambientais, como a possibilidade de contaminação da água e do solo, além de problemas de manejo devido à dificuldade de controle da qualidade da água e da temperatura, e riscos de escape de peixes para o ambiente natural.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_oQueE')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_especiesAmazonas')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+                    </div>
+                </div>`,
+            curso_especiesAmazonas: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 18H3.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Espécies para Criar no Amazonas</h2>
+                    <p class="text-gray-600 mb-6">Conheça os campeões de crescimento e mercado da nossa região.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-tamb.png" alt="Ilustração de Tambaqui, Matrinxã e Pirarucu" class="rounded-lg mb-4 w-full h-auto"/>
+                        <div class="bg-yellow-50 p-3 rounded-lg border-l-4 border-yellow-400">
+                            <h3 class="font-bold text-yellow-800">Tambaqui (Recomendado para iniciantes)</h3>
+                            <p>É o rei da piscicultura amazônica. Rústico, resistente, cresce rápido e tem um mercado excelente, tanto na feira quanto para restaurantes. É onívoro, ou seja, come de tudo, adaptando-se muito bem à ração e aceitando frutos da região (como açaí e buriti) para complementar a dieta.</p>
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded-lg mt-4 border-l-4 border-gray-400">
+                            <h3 class="font-bold text-gray-800">Matrinxã</h3>
+                            <p>Outra ótima opção. É um peixe muito ativo e de carne saborosa e valorizada. Também se adapta bem ao cativeiro e à ração, apresentando bom crescimento. Exige água de boa qualidade e bem oxigenada.</p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg mt-4 border-l-4 border-red-400">
+                            <h3 class="font-bold text-red-800">Pirarucu (Criação avançada)</h3>
+                            <p>É o sonho de todo piscicultor pelo seu tamanho e alto valor de mercado. No entanto, é para produtores experientes. É carnívoro (exige ração específica e mais cara), precisa de licença ambiental rigorosa do IPAAM e um manejo muito mais cuidadoso.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_tiposViveiros')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_dimensionamento')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+                    </div>
+                </div>`,
+            curso_dimensionamento: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2"/><rect x="8" y="6" width="8" height="4" rx="1" stroke="currentColor" stroke-width="2"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">4. Dimensionamento do Viveiro</h2>
+                    <p class="text-gray-600 mb-6">Planejando o tamanho ideal para começar sem erros.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-dime2.png" alt="Ilustração do cálculo de área de um viveiro" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p><strong>Regra de Ouro: Comece pequeno!</strong> É melhor ter sucesso em um viveiro de 200 m² do que fracassar em um de 1.000 m².</p>
+                        <p><strong>Densidade de Povoamento:</strong> É a quantidade de peixes por metro quadrado (m²) ou metro cúbico ( m³).
+                             Na região se utiliza em média 0,5 a 0,6 kg de peixe por m² quando criamos em viveiros escavados sem aeração. 
+                             Quando o produtor utiliza aeração essa densidade poderá aumentar para 1 kg de peixe por metros quadrados (m²).
+                              Nos sistemas de recirculação, tanques rede ou canais de igarapé, a densidade de estocagem é calculada em  kg por metro cúbico (m³).
+                              Em tanques rede na região de Itacoatiara o produtor utiliza a densidade de estocagem de aproximadamente 30 kg/m³.
+                               Nos sistemas de recirculação do IFAM campus Itacoatiara experimentos demonstraram que densidades de criação de 25 a 30 kg por metro cúbico (m³) foram adequadas para produção de tambaqui curumim.
+                                Produtores de matrinxã em canais de igarapé utilizam densidades de 15 a 20 kg/m³. Controlar a densidade de estocagem é importante para a saúde dos seus peixes e a produtividade da sua criação
+</p>
+                        <p><strong>Exemplo Prático:</strong>
+                            <li>Viveiro escavado: 10m de largura x 20m de comprimento = <strong>200 m²</strong>.</li>
+                            <li>Densidade: 1 peixe/m².</li>
+                            <li>Cálculo: 200 m² x 1 peixe/m² = <strong>200 peixes (alevinos)</strong>.</li>
+                        </p>
+                        <p><strong>Profundidade:</strong> A profundidade ideal do viveiro deve variar. Uma parte mais rasa (cerca de 1,20m) e uma mais funda (cerca de 1,80m). Isso cria zonas de conforto térmico para os peixes.</p>
+                        <p><strong>Calculadora SmartPiscis:</strong> Ultilize a calculadora SmartPiscis ela permite estimar o dimensionamento do viveiro, densidade de estocagem com base em parâmetros zootécnicos específicos. Preencha os campos para obter resultados precisos
+</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_especiesAmazonas')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_qualidadeAgua')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+                    </div>
+                </div>`,
+            
+            curso_qualidadeAgua: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M9.09 9.00001C9.3251 8.33168 9.78915 7.76811 10.4 7.40914C11.0108 7.05018 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52153 14.2151 8.06354C14.6714 8.60555 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">5. Qualidade da Água: O Segredo do Sucesso</h2>
+                    <p class="text-gray-600 mb-6">A água não é só onde o peixe vive, é o que o mantém saudável.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-qalidade.png" alt="Ilustração dos parâmetros de qualidade da água" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p><strong>Oxigênio Dissolvido:</strong> É o ar que o peixe respira. A principal causa de mortalidade é a falta de oxigênio. <strong>Sinal de perigo:</strong> peixes na superfície "boiando" ou "abrindo a boca". <strong>Solução:</strong> Renove a água do viveiro constantemente ou use aeradores (equipamento que borbulha ar na água).</p>
+                        <p><strong>pH (Acidez):</strong> O ideal para peixes amazônicos é um pH entre 5.5 e 8.5. Solos da nossa região costumam ser ácidos. <strong>Solução:</strong> Fazer a <strong>calagem</strong>, que é a aplicação de calcário no fundo do viveiro (antes de encher) para neutralizar a acidez.Lembre-se de monitorar o pH semanalmente.</p>
+                        <p><strong>Amônia, Nitrito e Nitrato:</strong> Altas concentrações de amônia, nitrito e nitrato podem ser tóxicas para os peixes. É importante monitorar esses parâmetros para evitar problemas de saúde. A amônia vem da urina do peixe e dos restos de ração. Em excesso, queima as brânquias e mata. <strong>Solução:</strong> Não superalimentar, manter a densidade correta e realizar trocas parciais de água (renovação) por baixo.</p>
+                        <p><strong>Alcalinidade:</strong> A alcalinidade da água, que indica a presença de sais minerais, é importante para a formação do fitoplâncton e para a estabilidade do pH </p>
+                        <p><strong>Transparência/Turbidez:</strong> A turbidez excessiva impede a penetração da luz solar, afetando o desenvolvimento do fitoplâncton, essencial para a produção de oxigênio e fonte de alimento para os peixes.<strong>Solução:</strong> realizar trocas parciais de água (renovação) por cima.</p>
+                        <p><strong>Temperatura:</strong> A temperatura ideal varia de acordo com a espécie de peixe, mas valores fora da faixa ideal podem causar estresse e até mortalidade. </p>
+                        <p><strong>Calculadora SmartPiscis:</strong> Use a calculadora SmartPiscis, ela possui funcionamento simples e didático, sendo uma ferramenta desenvolvida para otimizar a produção e auxiliar na tomada de decisões relacionadas ao dimensionamento, à alimentação e à análise da qualidade da água em empreendimentos de piscicultura. </p>
+                        
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_dimensionamento')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_racaoBiometria')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+                    </div>
+                </div>`,
+            curso_racaoBiometria: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 10L12 4L6 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">6. Ração e Biometria: O Motor do Crescimento</h2>
+                    <p class="text-gray-600 mb-6">Alimentar bem para crescer e medir para saber se está dando certo.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-biometria.png" alt="Ilustração de ração flutuante e uma balança" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p><strong>Ração:</strong> É o maior custo da produção (até 70% do total). Use ração extrusada (flutuante) de boa qualidade. A quantidade de proteína na ração varia com a idade do peixe (mais proteína para os jovens). Ofereça de 2 a 3 vezes ao dia, em quantidade que seja consumida em no máximo 15 minutos. <strong>Ração que sobra vira amônia!</strong></p>
+                        <p><strong>Biometria:</strong> É a "consulta médica" dos seus peixes. Uma vez por mês, use uma rede (tarrafa) para capturar uma amostra (uns 20 peixes) e pese-os em um balde com água numa balança.
+                        <strong>Objetivo:</strong>
+                        <li>Calcular o peso médio.</li>
+                        <li>Verificar se estão engordando (ganho de peso).</li>
+                        <li>Ajustar a quantidade de ração diária com base no peso total de peixes no viveiro.</li>
+                        </p>
+                        <p><strong>Como saber a quantidade de ração por dia?:</strong> O cálculo da quantidade de ração é baseado em três coisas principais: a biomassa dos peixes (ou seja, quantos quilos de peixe você tem no viveiro), a fase de crescimento (alevinagem, recria ou engorda) em que eles estão e a taxa de alimentação recomendada para essa fase.</p>
+                        <p><strong>Fórmula básica:</strong> <i>Quantidade de ração por dia = Biomassa total (kg) × Taxa de alimentação (%)</i></p>
+                        <p><strong>Exemplo Prático:</strong>
+                            <li>Você tem 1.000 kg de peixe em fase de engorda e a taxa recomendada é de 1,5% ao dia.</li>
+                            <li><strong>Quantidade diária = 1.000 × 0,015 = 15 kg de ração por dia.</strong>.</li>
+                            <p><strong> Taxas de alimentação por fase de crescimento</strong> Cada fase do peixe exige uma quantidade diferente de alimento, os peixes menores comem mais (em relação ao seu peso), enquanto os maiores comem menos.</p>
+                            <p><strong>Calculadora SmartPiscis:</strong> calculadora SmartPiscis permite estimar a quantidade ideal de ração para os peixes, com base em parâmetros zootécnicos específicos. Preencha os campos para obter resultados precisos.</p>
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_qualidadeAgua')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_custoProducao')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+
+                    </div>
+                </div>`,
+
+              curso_custoProducao: `
+    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+        <svg class="w-20 h-20 mx-auto text-yellow-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 20c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z" fill="currentColor"/>
+            <path d="M13 7h-2v2H9v2h2v4h2v-4h2v-2h-2V7z" fill="currentColor"/>
+        </svg>
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">6. Custo de Produção: Quanto Custa Criar Peixe?</h2>
+        <p class="text-gray-600 mb-6">Saber quanto custa produzir é essencial para ter lucro e não criar prejuízo.</p>
+        <div class="text-left space-y-4 mb-8 text-gray-700">
+            <img src="img/img-produ.png" alt="Ilustração de custo de produção na piscicultura" class="rounded-lg mb-4 w-full h-auto"/>
+            <p><strong>O que é Custo de Produção?</strong> É tudo aquilo que você gasta para produzir o peixe, desde o preparo do viveiro até a venda.</p>
+            <p><strong>Custos Fixos:</strong> São os gastos que acontecem mesmo sem produzir, como manutenção, energia elétrica e mão de obra contratada.</p>
+            <p><strong>Custos Variáveis:</strong> São os que variam conforme a produção. Exemplo: ração, alevinos, calagem, adubação e tratamentos sanitários.</p>
+            <p><strong>Calculando o Custo de Produção do Seu Peixe:</strong> Com os conceitos em mente, é hora de colocar a mão na massa. O cálculo pode ser feito por ciclo de produção.</p>
+<p><strong>Passo a Passo para o Cálculo:</strong>
+                            <li><b>Levante todos os custos variáveis do Ciclo:</b> Anote cada gasto com ração, alevinos, energia, etc., desde a compra dos filhotes até a venda do peixe.</li>
+                            <li><b>Levante os custos fixos do período:</b> Calcule os custos fixos mensais e multiplique pelo número de meses do ciclo de produção. Para a depreciação, estime a vida útil do bem e divida o seu valor por esse tempo.</li>
+                            <li><b>Some tudo para ter o custo total:</b> Custo Total = Custos Variáveis + Custos Fixos.</li>
+                            <li><b>Calcule o custo por quilo:</b> Divida o Custo Total pelo total de quilos de peixe que você produziu e vendeu (peso da despesca).</li>
+                        </p>
+            <p><strong>Exemplo:</strong> Para produzir 1.000 kg de tambaqui em seis meses, o custo total foi de R$ 10.500,00. Esse valor é a soma dos custos variáveis (R$ 9.300,00, principalmente com ração) e dos custos fixos (R$ 1.200,00).
+                Dividindo o custo total pela produção final, o custo de produção para cada quilo de peixe foi de R$ 10,50.</p>
+                <p><strong>Estratégias para redução de custos:</strong>
+                            <li><b>Manejo Alimentar eficiente:</b>Evite o desperdício de ração. Utilize tabelas de alimentação e observe o comportamento dos peixes. A conversão alimentar (quanto de ração é preciso para produzir 1 kg de peixe) é um indicador chave.</li>
+                            <li><b>Busca por insumos locais:</b> Pesquise por fornecedores de alevinos e ração na sua região para reduzir custos com frete.</li>
+                            <li><b>Boas práticas de manejo:</b>Um bom manejo da água e a prevenção de doenças evitam gastos com medicamentos e perdas de peixes.</li>
+                            <li><b>Diversificação:</b> Considere a criação de espécies com diferentes ciclos e demandas de mercado, como o pirarucu (com as devidas licenças) e peixes redondos (tambaqui). </li>
+                        </p>
+            <p><strong>Dica:</strong> Anote tudo! Não confiar só na memória. Um caderno ou planilha simples já ajuda a controlar os gastos.</p>
+            <p><strong>Calculadora SmartPiscis:</strong> Com a calculadora de custo da SmartPiscis você simula os gastos e tem uma ideia real do lucro ou prejuízo.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+            <button onclick="mostrarPasso('curso_racaoBiometria')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+            <button onclick="mostrarPasso('curso_conclusao')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Próximo Passo</button>
+        </div>
+    </div>`,
+            curso_conclusao: `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 10L12 4L6 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Parabéns! Você concluiu o curso. 🎉</h2>
+                    <p class="text-gray-600 mb-6">Agora você tem a base para iniciar sua jornada na piscicultura com mais segurança.</p>
+                    <div class="text-left space-y-4 mb-8 text-gray-700">
+                        <img src="img/img-para.gif" alt="Ilustração de sucesso e bons negócios" class="rounded-lg mb-4 w-full h-auto"/>
+                        <p><strong>Revisão Final para o Sucesso:</strong></p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Planejamento é tudo:</strong> Escolha a espécie e o sistema corretos para sua realidade.</li>
+                            <li><strong>Comece pequeno:</strong> Domine o manejo em um viveiro menor antes de expandir.</li>
+                            <li><strong>Água é vida:</strong> Monitore sempre o oxigênio, pH e evite o acúmulo de amônia.</li>
+                            <li><strong>Ração é investimento, não custo:</strong> Alimente corretamente e acompanhe o crescimento com a biometria.</li>
+                            <li><strong>Conheça seus gastos:</strong> O custo de produção inclui tudo o que você gasta para criar os peixes: ração, alevinos, mão de obra, energia, manutenção e medicamentos.</li>
+                            <li><strong>Decisões baseadas em dados:</strong> Quando você conhece seu custo de produção, pode planejar melhor os ciclos de criação e tomar decisões mais seguras para expandir seu negócio.</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_custoProducao')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button onclick="mostrarPasso('curso_atividade')" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Fazer Atividade Final</button>
+                    </div>
+                </div>`,
+            curso_atividade: `` // Será gerado dinamicamente
+        };
+
+        const questoes = [
+            {
+                pergunta: "1. Para um iniciante na Amazônia, qual a espécie de peixe mais recomendada para começar a criação?",
+                opcoes: ["Pirarucu", "Tambaqui", "Matrinxã"],
+                correta: "Tambaqui",
+                feedback: "Correto! O Tambaqui é rústico, resistente, come de tudo e tem ótimo mercado, sendo ideal para iniciantes."
+            },
+            {
+                pergunta: "2. Qual é a principal causa de morte de peixes em cativeiro?",
+                opcoes: ["Falta de ração", "Excesso de sol", "Falta de oxigênio na água"],
+                correta: "Falta de oxigênio na água",
+                feedback: "Exato! A falta de oxigênio dissolvido na água é o maior perigo na piscicultura. A renovação de água é essencial."
+            },
+            {
+                pergunta: "3. O que é 'calagem' e para que serve?",
+                opcoes: ["Aplicar sal para matar bactérias", "Aplicar calcário para corrigir a acidez da água", "Aplicar ração no fundo do viveiro"],
+                correta: "Aplicar calcário para corrigir a acidez da água",
+                feedback: "Isso mesmo! A calagem com calcário neutraliza a acidez comum nos solos da nossa região, melhorando a qualidade da água."
+            },
+            {
+                pergunta: "4. Para que serve a biometria?",
+                opcoes: ["Para contar quantos peixes morreram", "Para medir a temperatura da água", "Para verificar o crescimento dos peixes e ajustar a alimentação"],
+                correta: "Para verificar o crescimento dos peixes e ajustar a alimentação",
+                feedback: "Perfeito! A biometria é fundamental para saber se os peixes estão engordando e para calcular a quantidade certa de ração."
+            },
+             {
+    pergunta: "5. O que é o custo de produção na piscicultura?",
+    opcoes: [
+        "É o valor gasto apenas com ração.",
+        "É o valor total para criar o peixe, desde a compra do alevino até a venda.",
+        "É o valor pago pelos peixes vendidos."
+    ],
+    correta: "É o valor total para criar o peixe, desde a compra do alevino até a venda.",
+    feedback: "Correto! O custo de produção inclui todos os gastos envolvidos na criação dos peixes, como ração, energia, mão de obra e outros."},
+    {
+    pergunta: "6. Quais são os custos fixos na piscicultura?",
+    opcoes: [
+        "Custos com ração, medicamentos e alevinos.",
+        "Custos com manutenção de equipamentos e energia elétrica.",
+        "Custos com transporte e mão de obra."
+    ],
+    correta: "Custos com manutenção de equipamentos e energia elétrica.",
+    feedback: "Isso mesmo! Custos fixos são aqueles que não variam conforme a quantidade de peixes produzidos, como energia elétrica e manutenção."},
+    {
+    pergunta: "7. Por que é importante controlar o custo de produção na piscicultura?",
+    opcoes: [
+        "Para garantir que os peixes cresçam mais rápido.",
+        "Para definir o preço de venda e garantir lucro.",
+        "Para medir a qualidade da água."
+    ],
+    correta: "Para definir o preço de venda e garantir lucro.",
+    feedback: "Perfeito! Controlar os custos de produção é fundamental para definir preços adequados e garantir que sua piscicultura seja lucrativa."},
+    {
+    pergunta: "8. Qual das opções abaixo é um tipo de tanque usado na piscicultura?",
+    opcoes: [
+        "Caixa d'água de amianto",
+        "Tanque escavado",
+        "Barril de madeira com tampa"
+    ],
+    correta: "Tanque escavado",
+    feedback: "Muito bem! O tanque escavado é um dos tipos mais comuns de viveiro usado na piscicultura, ideal para áreas com boa disponibilidade de água e solo apropriado."},
+    {
+    pergunta: "9. Qual vantagem do uso de tanques-rede na piscicultura?",
+    opcoes: [
+        "Pode ser instalado em rios e lagos, aproveitando a correnteza natural",
+        "Dispensa alimentação dos peixes",
+        "Não precisa de licença ambiental"
+    ],
+    correta: "Pode ser instalado em rios e lagos, aproveitando a correnteza natural",
+    feedback: "Correto! O tanque-rede permite o uso de corpos d'água naturais, reduzindo custos com estrutura e aproveitando o fluxo de água para melhorar a oxigenação."},
+    {
+    pergunta: "10. Por que é importante calcular corretamente a quantidade de ração para os peixes?",
+    opcoes: [
+        "Para não deixar os peixes com fome",
+        "Para economizar tempo na alimentação",
+        "Para evitar desperdício e garantir o crescimento saudável dos peixes"
+    ],
+    correta: "Para evitar desperdício e garantir o crescimento saudável dos peixes",
+    feedback: "Exato! Ração em excesso gera desperdício e polui a água. A quantidade ideal garante crescimento eficiente e menor custo de produção."
+}
+
+        ];
+        
+        // Função para gerar o HTML do Quiz
+        function gerarQuizHTML() {
+            let quizHTML = `
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg text-center animate-fade-in">
+                    <svg class="w-20 h-20 mx-auto text-blue-500 mb-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="19" x2="15" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="9 11 10 12 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Atividade de Aprendizagem</h2>
+                    <p class="text-gray-600 mb-6">Vamos testar o que você aprendeu!</p>
+                    <div id="quiz-form" class="text-left space-y-4 mb-8 text-gray-700">
+            `;
+
+            questoes.forEach((q, index) => {
+                quizHTML += `
+                    <div id="questao-container-${index}" class="p-4 rounded-lg mb-4 bg-gray-50">
+                        <p class="font-bold mb-3">${q.pergunta}</p>
+                        <div class="space-y-2">
+                `;
+                q.opcoes.forEach(opcao => {
+                    quizHTML += `
+                        <label class="flex items-center p-2 rounded-md hover:bg-gray-200 cursor-pointer">
+                            <input type="radio" name="questao-${index}" value="${opcao}" class="mr-3">
+                            ${opcao}
+                        </label>
+                    `;
+                });
+                quizHTML += `
+                        </div>
+                        <p id="feedback-${index}" class="hidden mt-3 text-sm"></p>
+                    </div>
+                `;
+            });
+
+            quizHTML += `
+                    </div>
+                    <div id="resultado-quiz" class="hidden text-center mt-6 p-4 bg-blue-100 rounded-lg"></div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="mostrarPasso('curso_conclusao')" class="w-full bg-gray-200 text-gray-800 font-bold py-3 rounded-lg hover:bg-gray-300 transition-colors">Voltar</button>
+                        <button id="btn-verificar" onclick="verificarQuiz()" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors">Verificar Respostas</button>
+                        <button id="btn-reiniciar" onclick="reiniciarCurso()" class="hidden w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors">Reiniciar Curso</button>
+                    </div>
+                </div>
+            `;
+            return quizHTML;
+        }
+
+        // Preenche o conteúdo dos módulos
+        Object.keys(conteudos).forEach(passoId => {
+            const el = document.getElementById(passoId);
+            if (el) {
+                if (passoId === 'curso_atividade') {
+                    el.innerHTML = gerarQuizHTML();
+                } else {
+                    el.innerHTML = conteudos[passoId];
+                }
+            }
+        });
+
+        // Função para mostrar o passo atual e esconder os outros
+        function mostrarPasso(passoId) {
+            passos.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === passoId) {
+                        el.classList.remove('hidden-step');
+                    } else {
+                        el.classList.add('hidden-step');
+                    }
+                }
+            });
+            window.scrollTo(0, 0); // Rola para o topo da página
+        }
+
+        function verificarQuiz() {
+            let acertos = 0;
+            questoes.forEach((q, index) => {
+                const container = document.getElementById(`questao-container-${index}`);
+                const feedbackEl = document.getElementById(`feedback-${index}`);
+                const radios = document.getElementsByName(`questao-${index}`);
+                let respostaSelecionada = '';
+                radios.forEach(radio => {
+                    if (radio.checked) {
+                        respostaSelecionada = radio.value;
+                    }
+                    radio.disabled = true; // Desabilita opções após verificação
+                });
+
+                container.classList.remove('bg-gray-50');
+                if (respostaSelecionada === q.correta) {
+                    acertos++;
+                    container.classList.add('bg-green-50', 'border-l-4', 'border-green-500');
+                    feedbackEl.classList.add('text-green-700');
+                } else {
+                    container.classList.add('bg-red-50', 'border-l-4', 'border-red-500');
+                    feedbackEl.classList.add('text-red-700');
+                }
+                feedbackEl.innerText = q.feedback;
+                feedbackEl.classList.remove('hidden');
+            });
+
+            const resultadoEl = document.getElementById('resultado-quiz');
+            resultadoEl.innerHTML = `
+                <h3 class="text-xl font-bold text-blue-800">Seu resultado:</h3>
+                <p class="text-2xl font-bold text-blue-800">${acertos} de ${questoes.length} acertos!</p>
+            `;
+            resultadoEl.classList.remove('hidden');
+
+            document.getElementById('btn-verificar').classList.add('hidden');
+            document.getElementById('btn-reiniciar').classList.remove('hidden');
+        }
+        
+        function reiniciarCurso() {
+            document.getElementById('curso_atividade').innerHTML = gerarQuizHTML();
+            mostrarPasso('inicio');
+        }
+
+        // Garante que o passo inicial seja exibido ao carregar a página
+        window.onload = () => {
+            mostrarPasso('inicio');
+        };
+
+        const menuToggle = document.getElementById('menuToggle');
+  const navBar = document.getElementById('navBar');
+
+  menuToggle.addEventListener('click', () => {
+    navBar.classList.toggle('show');
+  });
+    </script>
+     <footer class="footer">
+    <p>&copy; 2025 SmartPiscis. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
