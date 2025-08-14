@@ -675,22 +675,22 @@
             updateCostResultsUI(results);
         }
 
-        function updateCostResultsUI(results) {
+         function updateCostResultsUI(results) {
             const resultadoDiv = document.getElementById('resultado');
             
             const cardsHTML = `
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
                     <div class="result-card">
                         <span class="text-sm text-gray-400 block">Receita Bruta / Ciclo</span>
-                        <span class="text-2xl font-bold text-green-400 block">${formatarNumeroBR(results.receitaBruta, {moeda: true})}</span>
+                        <span class="text-xl md:text-2xl font-bold text-green-400 block">${formatarNumeroBR(results.receitaBruta, {moeda: true})}</span>
                     </div>
                     <div class="result-card">
                         <span class="text-sm text-gray-400 block">Custo Total / Ciclo</span>
-                        <span class="text-2xl font-bold text-red-400 block">${formatarNumeroBR(results.custoTotal, {moeda: true})}</span>
+                        <span class="text-xl md:text-2xl font-bold text-red-400 block">${formatarNumeroBR(results.custoTotal, {moeda: true})}</span>
                     </div>
                     <div class="result-card">
                         <span class="text-sm text-gray-400 block">Lucro Bruto / Ciclo</span>
-                        <span class="text-2xl font-bold ${results.lucroBruto >= 0 ? 'text-green-400' : 'text-red-400'} block">${formatarNumeroBR(results.lucroBruto, {moeda: true})}</span>
+                        <span class="text-xl md:text-2xl font-bold ${results.lucroBruto >= 0 ? 'text-green-400' : 'text-red-400'} block">${formatarNumeroBR(results.lucroBruto, {moeda: true})}</span>
                     </div>
                     <div class="result-card">
                         <span class="text-sm text-gray-400 block">Custo por Kg</span>
@@ -778,7 +778,6 @@
             });
         }
 
-
         // --- FUNÇÕES DE EXPORTAÇÃO (UNIFICADAS) ---
         function compartilharWhatsApp() {
             const resultadoElement = document.getElementById('resultado');
@@ -833,4 +832,5 @@
 
     </script>
 </body>
+
 </html>
