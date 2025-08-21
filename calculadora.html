@@ -37,6 +37,33 @@
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Styles for Info Tooltip */
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            width: 220px;
+            background-color: #1f2937;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="p-4">
@@ -54,7 +81,9 @@
             class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
             <option value="estrutura">Dimensionamento do Viveiro</option>
             <option value="agua">Análise da Água</option>
-            <option value="racao">Cálculo de Ração</option>
+            <option value="racao">Cálculo de Ração Diária</option>
+            <option value="planoRacao">Plano de Arraçoamento (Ciclo)</option>
+            <option value="fca">Conversão Alimentar (FCA)</option>
             <option value="custo">Custo de Produção e Lucro</option>
         </select>
 
@@ -66,7 +95,12 @@
             <input type="number" id="largura" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
             <label for="profundidade" class="block mb-2 font-semibold text-gray-200">Profundidade média (m):</label>
             <input type="number" id="profundidade" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="densidade" class="block mb-2 font-semibold text-gray-200">Densidade (peixes/m² - opcional):</label>
+            <label for="densidade" class="block mb-2 font-semibold text-gray-200">
+                Densidade (opcional)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Número de peixes por metro quadrado (m²) em tanques escavados ou por metro cúbico (m³) em tanques-rede e RAS.</span>
+                </span>
+            </label>
             <input type="number" id="densidade" min="0" step="0.01" placeholder="Deixe em branco para sugestão" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
             <label for="tipoTanque" class="block mb-2 font-semibold text-gray-200">Tipo de Tanque:</label>
             <select id="tipoTanque" onchange="atualizarLabelDensidade()" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -99,58 +133,152 @@
                 <option value="tambaqui">Tambaqui</option>
                 <option value="pirarucu">Pirarucu</option>
             </select>
-            <label for="temperatura" class="block mb-2 font-semibold text-gray-200">Temperatura da Água (°C):</label>
+            <label for="temperatura" class="block mb-2 font-semibold text-gray-200">
+                Temperatura da Água (°C)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Temperatura ideal para o metabolismo e crescimento dos peixes. Variações bruscas causam estresse.</span>
+                </span>
+            </label>
             <input type="number" id="temperatura" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="ph" class="block mb-2 font-semibold text-gray-200">pH da Água:</label>
+            <label for="ph" class="block mb-2 font-semibold text-gray-200">
+                pH da Água
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Mede a acidez ou alcalinidade da água. Níveis inadequados afetam a respiração e a saúde dos peixes.</span>
+                </span>
+            </label>
             <input type="number" id="ph" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="oxigenio" class="block mb-2 font-semibold text-gray-200">Oxigênio Dissolvido (mg/L):</label>
+            <label for="oxigenio" class="block mb-2 font-semibold text-gray-200">
+                Oxigênio Dissolvido (mg/L)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Essencial para a respiração. Níveis baixos podem levar à mortalidade, especialmente à noite.</span>
+                </span>
+            </label>
             <input type="number" id="oxigenio" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="alcalinidade" class="block mb-2 font-semibold text-gray-200">Alcalinidade Total (mg/L CaCO₃):</label>
+            <label for="alcalinidade" class="block mb-2 font-semibold text-gray-200">
+                Alcalinidade Total (mg/L CaCO₃)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Capacidade da água de neutralizar ácidos. Ajuda a manter o pH estável, evitando variações bruscas que estressam os peixes.</span>
+                </span>
+            </label>
             <input type="number" id="alcalinidade" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="amonia" class="block mb-2 font-semibold text-gray-200">Amônia Total (mg/L):</label>
+            <label for="amonia" class="block mb-2 font-semibold text-gray-200">
+                Amônia Total (mg/L)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Composto tóxico vindo de restos de ração e fezes. Níveis altos causam estresse, doenças e mortalidade.</span>
+                </span>
+            </label>
             <input type="number" id="amonia" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="nitrito" class="block mb-2 font-semibold text-gray-200">Nitrito (mg/L):</label>
+            <label for="nitrito" class="block mb-2 font-semibold text-gray-200">
+                Nitrito (mg/L)
+                 <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Composto tóxico, resultado da decomposição da amônia. Prejudicial ao transporte de oxigênio no sangue dos peixes.</span>
+                </span>
+            </label>
             <input type="number" id="nitrito" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="nitrato" class="block mb-2 font-semibold text-gray-200">Nitrato (mg/L):</label>
+            <label for="nitrato" class="block mb-2 font-semibold text-gray-200">
+                Nitrato (mg/L)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Estágio final da decomposição da amônia. Menos tóxico, mas em excesso indica acúmulo de matéria orgânica.</span>
+                </span>
+            </label>
             <input type="number" id="nitrato" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <label for="transparencia" class="block mb-2 font-semibold text-gray-200">Transparência da Água (cm - Disco de Secchi):</label>
+            <label for="transparencia" class="block mb-2 font-semibold text-gray-200">
+                Transparência (Disco de Secchi)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Mede a turbidez da água. Ajuda a avaliar a proliferação de algas (alimento natural) e a visibilidade no viveiro.</span>
+                </span>
+            </label>
             <input type="number" id="transparencia" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
             <button onclick="analisarAgua()" class="w-full p-3 mt-4 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition duration-300">Analisar Água</button>
         </div>
 
-        <!-- FORMULÁRIO DE RAÇÃO -->
+        <!-- FORMULÁRIO DE RAÇÃO DIÁRIA -->
         <div id="formRacao" style="display:none;">
             <label for="especieRacao" class="block mt-2 mb-2 font-semibold text-gray-200">Espécie de Peixe:</label>
-            <select id="especieRacao" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <select id="especieRacao" onchange="atualizarInfoPesoMedio()" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
                 <option value="matrinxa">Matrinxã</option>
                 <option value="tambaqui">Tambaqui</option>
                 <option value="pirarucu">Pirarucu</option>
             </select>
             <label for="faseRacao" class="block mb-2 font-semibold text-gray-200">Fase de Criação:</label>
-            <select id="faseRacao" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <select id="faseRacao" onchange="atualizarInfoPesoMedio()" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
                 <option value="alevinagem">Alevinagem</option>
                 <option value="recria">Recria</option>
                 <option value="engorda">Engorda</option>
             </select>
-            <label for="pesoMedioRacao" class="block mb-2 font-semibold text-gray-200">Peso médio dos peixes (g):</label>
-            <input type="number" id="pesoMedioRacao" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <label for="pesoMedioRacao" class="block mb-2 font-semibold text-gray-200">
+                Peso médio dos peixes
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span id="infoPesoMedioTooltip" class="tooltip-text"></span>
+                </span>
+            </label>
+            <div class="flex gap-2 mb-4">
+                <input type="number" id="pesoMedioRacao" min="0" step="0.01" class="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                <select id="unidadePesoRacao" class="p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                </select>
+            </div>
             <label for="quantidadePeixes" class="block mb-2 font-semibold text-gray-200">Quantidade de Peixes:</label>
             <input type="number" id="quantidadePeixes" min="0" step="1" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
             <button onclick="calcularRacao()" class="w-full p-3 mt-4 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition duration-300">Calcular Ração</button>
+        </div>
+        
+        <!-- FORMULÁRIO DE PLANO DE ARRAÇOAMENTO -->
+        <div id="formPlanoRacao" style="display:none;">
+            <label for="especiePlano" class="block mt-2 mb-2 font-semibold text-gray-200">Espécie de Peixe:</label>
+            <select id="especiePlano" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                <option value="matrinxa">Matrinxã</option>
+                <option value="tambaqui">Tambaqui</option>
+                <option value="pirarucu">Pirarucu</option>
+            </select>
+            <label for="pesoInicialPlano" class="block mb-2 font-semibold text-gray-200">Peso inicial dos peixes:</label>
+            <div class="flex gap-2 mb-4">
+                <input type="number" id="pesoInicialPlano" min="0" step="0.01" class="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                 <select id="unidadePesoInicialPlano" class="p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="g" selected>g</option>
+                    <option value="kg">kg</option>
+                </select>
+            </div>
+            <label for="pesoFinalPlano" class="block mb-2 font-semibold text-gray-200">Peso final desejado:</label>
+            <div class="flex gap-2 mb-4">
+                <input type="number" id="pesoFinalPlano" min="0" step="0.01" class="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                 <select id="unidadePesoFinalPlano" class="p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="g" selected>g</option>
+                    <option value="kg">kg</option>
+                </select>
+            </div>
+            <label for="quantidadePeixesPlano" class="block mb-2 font-semibold text-gray-200">Quantidade de Peixes:</label>
+            <input type="number" id="quantidadePeixesPlano" min="0" step="1" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label for="precoSacoRacao" class="block mb-2 font-semibold text-gray-200">
+                        Preço do saco de ração (R$)
+                        <span class="info-tooltip text-teal-400 font-bold">(i)
+                            <span class="tooltip-text">Se usar rações com preços diferentes, informe um valor médio para uma estimativa de custo.</span>
+                        </span>
+                    </label>
+                    <input type="number" id="precoSacoRacao" min="0" step="0.01" class="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                </div>
+                 <div>
+                    <label for="pesoSacoRacao" class="block mb-2 font-semibold text-gray-200">Peso do saco (kg):</label>
+                    <input type="number" id="pesoSacoRacao" min="0" step="0.01" value="25" class="w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                </div>
+            </div>
+            <label for="duracaoCicloPlano" class="block mb-2 font-semibold text-gray-200">
+                Duração do Ciclo (dias - opcional)
+                 <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Se você tem uma meta de dias para o ciclo, preencha aqui. Se deixar em branco, faremos uma estimativa.</span>
+                </span>
+            </label>
+            <input type="number" id="duracaoCicloPlano" min="0" step="1" placeholder="Deixe em branco para estimar" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <button onclick="calcularPlanoRacao()" class="w-full p-3 mt-4 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition duration-300">Calcular Plano de Arraçoamento</button>
         </div>
 
         <!-- FORMULÁRIO DE CUSTO DE PRODUÇÃO -->
         <div id="formCusto" style="display:none;">
             <div class="space-y-4">
                 <h3 class="text-xl font-semibold pt-4 text-white border-t border-gray-700">Parâmetros do Cultivo</h3>
-                <div>
-                    <label for="custo_especie" class="block text-sm font-medium text-gray-300 mb-1">Espécie</label>
-                    <select id="custo_especie" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
-                        <option>Matrinxã</option>
-                        <option>Tambaqui</option>
-                        <option>Pirarucu</option>
-                    </select>
-                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label for="custo_producao_kg" class="block text-sm font-medium text-gray-300 mb-1">Produção Total (kg)</label>
@@ -171,6 +299,31 @@
                 </div>
             </div>
             <button onclick="calcularCusto()" class="w-full p-3 mt-8 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition duration-300">Calcular Custo e Lucro</button>
+        </div>
+
+        <!-- FORMULÁRIO DE FCA -->
+        <div id="formFca" style="display:none;">
+            <label for="especieFca" class="block mt-2 mb-2 font-semibold text-gray-200">Espécie de Peixe:</label>
+            <select id="especieFca" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+                <option value="matrinxa">Matrinxã</option>
+                <option value="tambaqui">Tambaqui</option>
+                <option value="pirarucu">Pirarucu</option>
+            </select>
+            <label for="racaoTotal" class="block mb-2 font-semibold text-gray-200">
+                Ração total utilizada (kg)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Informe a quantidade total de ração, em quilos, que foi consumida durante todo o ciclo de engorda.</span>
+                </span>
+            </label>
+            <input type="number" id="racaoTotal" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <label for="ganhoPesoTotal" class="block mb-2 font-semibold text-gray-200">
+                Ganho de peso total (kg)
+                <span class="info-tooltip text-teal-400 font-bold">(i)
+                    <span class="tooltip-text">Informe o peso total que os peixes ganharam. (Ex: Biomassa Final - Biomassa Inicial).</span>
+                </span>
+            </label>
+            <input type="number" id="ganhoPesoTotal" min="0" step="0.01" class="w-full p-3 mb-4 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-teal-500">
+            <button onclick="calcularFca()" class="w-full p-3 mt-4 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition duration-300">Calcular FCA</button>
         </div>
 
         <!-- ÁREA DE RESULTADO UNIFICADA -->
@@ -194,73 +347,84 @@
         // --- CONFIGURAÇÃO GLOBAL ---
         let activeCalculator = 'estrutura';
         let costChartInstance = null;
+        // Variáveis globais para integração
+        let quantidadePeixesGlobal = null;
+        let biomassaVendaGlobal = null;
 
         // --- DADOS GERAIS DE PISCICULTURA ---
         const dadosPiscicultura = {
+            fcaIdeal: { matrinxa: 1.6, tambaqui: 1.8, pirarucu: 1.0 },
             densidadeEstocagem: {
-                escavado: {
-                 alevinagem: { matrinxa: 30, tambaqui: 40, pirarucu: 5 },
+                escavado: { alevinagem: { matrinxa: 30, tambaqui: 40, pirarucu: 5 },
                  recria: { matrinxa: 10, tambaqui: 10, pirarucu: 2},
-                 engorda: { matrinxa: 0.5, tambaqui: 0.5, pirarucu: 0.5} },
-                rede: {
-                     alevinagem: { matrinxa: 200, tambaqui: 150, pirarucu: 20}, 
-                     recria: { matrinxa: 100, tambaqui: 50, pirarucu: 5}, 
-                     engorda: { matrinxa: 30, tambaqui: 15, pirarucu: 2} },
-                ras: { 
-                    alevinagem: { matrinxa: 250, tambaqui: 250, pirarucu: 50}, 
-                    recria: { matrinxa: 100, tambaqui: 100, pirarucu: 15}, 
-                    engorda: { matrinxa: 30, tambaqui: 30, pirarucu: 5} }
+                  engorda: { matrinxa: 0.5, tambaqui: 0.5, pirarucu: 0.5} },
+
+                rede: { alevinagem: { matrinxa: 200, tambaqui: 150, pirarucu: 20},
+                recria: { matrinxa: 100, tambaqui: 50, pirarucu: 5},
+                engorda: { matrinxa: 30, tambaqui: 15, pirarucu: 2} },
+
+                ras: { alevinagem: { matrinxa: 250, tambaqui: 250, pirarucu: 50},
+                 recria: { matrinxa: 100, tambaqui: 100, pirarucu: 15},
+                  engorda: { matrinxa: 30, tambaqui: 30, pirarucu: 5} }
             },
-            pesoAbateIdeal: {
-                 matrinxa: 1.5,
+            pesoAbateIdeal: { 
+                matrinxa: 1.5,
                 tambaqui: 3,
                 pirarucu: 15 },
 
             limitesAgua: {
-                matrinxa: { nome: "Matrinxã", 
-                temp: { range: [25, 30], unit: "°C", lowRec: "Considerar aquecimento ou sombreamento.", highRec: "Aumentar sombreamento ou renovação de água." },
-                ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.", highRec: "Avaliar uso de outros corretivos (como gesso agrícola ou ácido)." }, 
-                oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." }, 
-                alc: { range: [35, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." }, 
-                amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água,realizar a troca de água por baixo, verificar eficiência da filtragem biológica." }, 
-                nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" }, 
-                nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." }, 
-                trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." } },
-
-                tambaqui: { nome: "Tambaqui", 
-                temp: { range: [28, 32], unit: "°C", lowRec: "Aquecimento ou sombreamento para manter a faixa ideal.", highRec: "Aumentar sombreamento ou renovação de água." }, 
-                ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.", highRec: "Avaliar uso de outros corretivos (como gesso agrícola ou ácido)." }, 
-                oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." }, 
-                alc: { range: [35, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." }, 
-                amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água,realizar a troca de água por baixo, verificar eficiência da filtragem biológica." }, 
-                nitrito: { range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" }, 
-                nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." }, 
-                trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." } },
-
-                pirarucu: { nome: "Pirarucu", 
-                temp: { range: [28, 36], unit: "°C", lowRec: "Manter temperatura elevada, usar aquecedores se necessário.", highRec: "Monitorar, mas pirarucu tolera altas temperaturas." }, 
-                ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.", highRec: "Avaliar uso de outros corretivos (como gesso agrícola ou ácido)."}, 
-                oxi: { range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." }, 
-                alc: { range: [35, 40], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." }, 
-                amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água,realizar a troca de água por baixo, verificar eficiência da filtragem biológica." }, 
-                nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." }, 
-                nitrato: { range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." }, 
-                trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." } },
+                matrinxa: {
+                    nome: "Matrinxã",
+                    temp: { range: [25, 30], unit: "°C", lowRec: "Considerar aquecimento ou sombreamento.", highRec: "Aumentar sombreamento ou renovação de água." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o pH da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água,realizar a troca de água por baixo, verificar eficiência da filtragem biológica." },
+                    nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                },
+                tambaqui: {
+                    nome: "Tambaqui",
+                    temp: { range: [28, 32], unit: "°C", lowRec: "Aquecimento ou sombreamento para manter a faixa ideal.", highRec: "Aumentar sombreamento ou renovação de água." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH.Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial." },
+                    oxi: { range: [4, 12], unit: "mg/L", lowRec: "Urgente! Instalar aeradores, aumentar fluxo de água.", highRec: "Normal, mas monitorar algas e superpopulação." },
+                    alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Reduzir alimentação, aumentar renovação de água,realizar a troca de água por baixo, verificar eficiência da filtragem biológica." },
+                    nitrito: { range: [0, 0.10], unit: "mg/L", highRec: "Aumentar aeração, reduzir alimentação, verificar filtros biológicos. Nitrito é tóxico!" },
+                    nitrato: { range: [0, 0.50], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                },
+                pirarucu: {
+                    nome: "Pirarucu",
+                    temp: { range: [28, 36], unit: "°C", lowRec: "Manter temperatura elevada, usar aquecedores se necessário.", highRec: "Monitorar, mas pirarucu tolera altas temperaturas." },
+                    ph: { range: [5.5, 8.5], unit: "", lowRec: "Aplicar calcário agrícola para elevar o pH. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.", highRec: "Verificar acúmulo de matéria orgânica, considerar renovação parcial."},
+                    oxi: { range: [3, 12], unit: "mg/L", lowRec: "Apesar de respirador de ar, manter oxigênio adequado. Aerar se abaixo de 3 mg/L.", highRec: "Normal." },
+                    alc: { range: [30, 60], unit: "mg/L CaCO₃", lowRec: "Adicionar calcário dolomítico para aumentar a alcalinidade e capacidade tampão.", highRec: "Normal." },
+                    amonia: { range: [0, 0.20], unit: "mg/L", highRec: "Extremamente sensível! Reduzir alimentação drasticamente, troca de água imediata por baixo, verificar filtros." },
+                    nitrito: { range: [0, 0.50], unit: "mg/L", highRec: "Extremamente sensível! Aumentar aeração, reduzir alimentação, troca de água imediata." },
+                    nitrato: { range: [0, 0.5], unit: "mg/L", highRec: "Realizar troca parcial de água, considerar plantas aquáticas ou desnitrificação." },
+                    trans: { range: [50, 70], unit: "cm", lowRec: "Reduzir adubação ou alimentação, aumentar renovação,realizar a troca de água por cima para evitar proliferação de algas.", highRec: "Aumentar adubação (se necessário) ou verificar turbidez por argila/sedimentos." }
+                },
+                
             },
             racao: {
-                matrinxa: { 
-                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" }, 
-                    recria: { proteina: 36, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" }, 
-                    engorda: { proteina: 28, taxa: [[500, 1500, 0.015, 2], [1500, Infinity, 0.01, 1]], pellet: "10-12mm" } },
-
-                tambaqui: { 
-                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" }, 
-                    recria: { proteina: 35, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" }, 
-                    engorda: { proteina: 28, taxa: [[500, 2500, 0.015, 2], [2500, Infinity, 0.01, 1]], pellet: "10-12mm" } },
-                pirarucu: { 
-                    alevinagem: { proteina: 50, taxa: [[0, 50, 0.08, 6], [50, 200, 0.06, 5]], pellet: "1-4mm" }, 
-                    recria: { proteina: 45, taxa: [[200, 1000, 0.04, 4], [1000, 3000, 0.03, 3]], pellet: "2-4mm" }, 
-                    engorda: { proteina: 40, taxa: [[3000, 10000, 0.02, 2], [10000, Infinity, 0.015, 1]], pellet: "10-12mm" } }
+                matrinxa: {
+                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" },
+                    recria: { proteina: 36, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" },
+                    engorda: { proteina: 28, taxa: [[500, 1500, 0.015, 2], [1500, Infinity, 0.01, 1]], pellet: "10-12mm" }
+                },
+                tambaqui: {
+                    alevinagem: { proteina: 45, taxa: [[0, 1, 0.08, 6], [1, 20, 0.06, 5], [20, 50, 0.04, 4]], pellet: "1-4mm" },
+                    recria: { proteina: 35, taxa: [[50, 200, 0.03, 3], [200, 500, 0.02, 2]], pellet: "2-4mm" },
+                    engorda: { proteina: 28, taxa: [[500, 2500, 0.015, 2], [2500, Infinity, 0.01, 1]], pellet: "10-12mm" }
+                },
+                pirarucu: {
+                    alevinagem: { proteina: 50, taxa: [[0, 50, 0.08, 6], [50, 200, 0.06, 5]], pellet: "1-4mm" },
+                    recria: { proteina: 45, taxa: [[200, 1000, 0.04, 4], [1000, 3000, 0.03, 3]], pellet: "2-4mm" },
+                    engorda: { proteina: 40, taxa: [[3000, 10000, 0.02, 2], [10000, Infinity, 0.015, 1]], pellet: "10-12mm" }
+                }
+                
             }
         };
 
@@ -281,6 +445,7 @@
             document.getElementById('tipoTanque').addEventListener('change', atualizarLabelDensidade);
             atualizarLabelDensidade();
             initializeCostInputs();
+            atualizarInfoPesoMedio(); // Chama a função para definir o tooltip inicial
         });
 
         // --- FUNÇÕES GERAIS E DE NAVEGAÇÃO ---
@@ -288,20 +453,54 @@
             activeCalculator = document.getElementById("tipoCalculadora").value;
             const subtitle = document.getElementById("subtitle");
             
-            document.getElementById("formEstrutura").style.display = "none";
-            document.getElementById("formAgua").style.display = "none";
-            document.getElementById("formRacao").style.display = "none";
-            document.getElementById("formCusto").style.display = "none";
+            const forms = ["formEstrutura", "formAgua", "formRacao", "formCusto", "formFca", "formPlanoRacao"];
+            forms.forEach(formId => document.getElementById(formId).style.display = "none");
 
-            document.getElementById(`form${activeCalculator.charAt(0).toUpperCase() + activeCalculator.slice(1)}`).style.display = "block";
-            
             const subtitles = {
                 estrutura: "Calcule o dimensionamento ideal para seu tanque ou viveiro.",
                 agua: "Analise os parâmetros da água e receba recomendações.",
                 racao: "Determine a quantidade de ração ideal para seus peixes.",
+                planoRacao: "Projete a quantidade e o custo de ração para o ciclo completo.",
+                fca: "Calcule a eficiência da sua alimentação com o Fator de Conversão Alimentar.",
                 custo: "Calcule os custos de produção, lucro e viabilidade do seu negócio."
             };
-            subtitle.innerText = subtitles[activeCalculator];
+
+            switch(activeCalculator) {
+                case 'estrutura':
+                    document.getElementById("formEstrutura").style.display = "block";
+                    subtitle.innerText = subtitles.estrutura;
+                    break;
+                case 'agua':
+                    document.getElementById("formAgua").style.display = "block";
+                    subtitle.innerText = subtitles.agua;
+                    break;
+                case 'racao':
+                    document.getElementById("formRacao").style.display = "block";
+                    subtitle.innerText = subtitles.racao;
+                    if (quantidadePeixesGlobal) {
+                        document.getElementById('quantidadePeixes').value = quantidadePeixesGlobal;
+                    }
+                    atualizarInfoPesoMedio(); // Atualiza o tooltip ao mudar para a aba
+                    break;
+                case 'planoRacao':
+                    document.getElementById("formPlanoRacao").style.display = "block";
+                    subtitle.innerText = subtitles.planoRacao;
+                     if (quantidadePeixesGlobal) {
+                        document.getElementById('quantidadePeixesPlano').value = quantidadePeixesGlobal;
+                    }
+                    break;
+                case 'custo':
+                    document.getElementById("formCusto").style.display = "block";
+                    subtitle.innerText = subtitles.custo;
+                    if (biomassaVendaGlobal) {
+                        document.getElementById('custo_producao_kg').value = biomassaVendaGlobal.toFixed(2);
+                    }
+                    break;
+                case 'fca':
+                    document.getElementById("formFca").style.display = "block";
+                    subtitle.innerText = subtitles.fca;
+                    break;
+            }
 
             document.getElementById("resultado").innerHTML = "";
             if (costChartInstance) {
@@ -335,8 +534,8 @@
             const tipoTanque = document.getElementById("tipoTanque").value;
             const densidadeLabel = document.querySelector('label[for="densidade"]');
             densidadeLabel.innerHTML = (tipoTanque === 'escavado') 
-                ? 'Densidade (peixes/m² - opcional):' 
-                : 'Densidade (peixes/m³ - opcional):';
+                ? 'Densidade (peixes/m² - opcional) <span class="info-tooltip text-teal-400 font-bold">(i)<span class="tooltip-text">Número de peixes por metro quadrado (m²) em tanques escavados.</span></span>' 
+                : 'Densidade (peixes/m³ - opcional) <span class="info-tooltip text-teal-400 font-bold">(i)<span class="tooltip-text">Número de peixes por metro cúbico (m³) em tanques-rede e RAS.</span></span>';
         }
 
         function calcularEstrutura() {
@@ -378,15 +577,19 @@
             }
 
             const biomassaEstimadaVenda = quantidadePeixes * pesoMedioVenda;
+            
+            // Salva os resultados para integração
+            quantidadePeixesGlobal = Math.round(quantidadePeixes);
+            biomassaVendaGlobal = biomassaEstimadaVenda;
 
             let statusDensidade = "";
             if (!isNaN(densidadeInput) && densidadeInput > 0 && densidadeRecomendada > 0) {
                  if (densidadeInput > densidadeRecomendada * 1.2) {
                     statusDensidade = `<span class="text-red-400 font-bold">Muito Alta</span>`;
-                    recomendacoes += `<div class="alerta-vermelho">Sua densidade (${formatarNumeroBR(densidadeInput, {casasDecimais: 1})}) está muito acima da recomendada (${formatarNumeroBR(densidadeRecomendada, {casasDecimais: 2})}). Risco de estresse e doenças.</div>`;
+                    recomendacoes += `<div class="alerta-vermelho">Sua densidade (${formatarNumeroBR(densidadeInput, {casasDecimais: 1})}) está muito acima da recomendada (${formatarNumeroBR(densidadeRecomendada, {casasDecimais: 1})}). Risco de estresse e doenças.</div>`;
                 } else if (densidadeInput < densidadeRecomendada * 0.8) {
                     statusDensidade = `<span class="text-yellow-400 font-bold">Baixa</span>`;
-                    recomendacoes += `<div class="alerta-amarelo">Sua densidade (${formatarNumeroBR(densidadeInput, {casasDecimais: 1})}) está abaixo da recomendada (${formatarNumeroBR(densidadeRecomendada, {casasDecimais: 2})}). Você pode estar subutilizando seu espaço.</div>`;
+                    recomendacoes += `<div class="alerta-amarelo">Sua densidade (${formatarNumeroBR(densidadeInput, {casasDecimais: 1})}) está abaixo da recomendada (${formatarNumeroBR(densidadeRecomendada, {casasDecimais: 1})}). Você pode estar subutilizando seu espaço.</div>`;
                 } else {
                     statusDensidade = `<span class="text-green-400 font-bold">Ideal</span>`;
                     recomendacoes += `<div class="alerta-verde">Sua densidade (${formatarNumeroBR(densidadeInput, {casasDecimais: 1})}) está na faixa ideal. Bom trabalho!</div>`;
@@ -493,22 +696,22 @@
                             sugestao = "Aplicar 300 a 400 gramas/m² de calcário agrícola para corrigir.";
                         } else if (valor >= 10 && valor < 20) {
                             sugestao = "Aplicar 200 a 300 gramas/m² de calcário agrícola para corrigir.";
-                        } else if (valor >= 20 && valor < 35) {
+                        } else if (valor >= 20 && valor < 30) {
                             sugestao = "Aplicar 100 a 200 gramas/m² de calcário agrícola para corrigir.";
                         }
                     }
                     
                     if (parametroNome === 'pH') {
                         if (valor < 4.5) {
-                            sugestao = "Aplicar 1,5 a 2,0 kg/m² de calcário agrícola para corrigir.";
+                            sugestao = "Aplicar 1,5 a 2,0 kg/m² de calcário agrícola para corrigir. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.";
                         } else if (valor < 5.0) {
-                            sugestao = "Aplicar 1,0 a 1,5 kg/m² de calcário agrícola para corrigir.";
+                            sugestao = "Aplicar 1,0 a 1,5 kg/m² de calcário agrícola para corrigir. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.";
                         } else if (valor < 5.5) {
-                            sugestao = "Aplicar 0,8 a 1,2 kg/m² de calcário agrícola para corrigir.";
+                            sugestao = "Aplicar 0,8 a 1,2 kg/m² de calcário agrícola para corrigir. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.";
                         } else if (valor < 6.0) {
-                            sugestao = "Aplicar 0,5 a 0,8 kg/m² de calcário agrícola para corrigir.";
+                            sugestao = "Aplicar 0,5 a 0,8 kg/m² de calcário agrícola para corrigir. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.";
                         } else if (valor < 6.5) {
-                            sugestao = "Aplicar 0,2 a 0,5 kg/m² de calcário agrícola para corrigir.";
+                            sugestao = "Aplicar 0,2 a 0,5 kg/m² de calcário agrícola para corrigir. Lembre-se, manter o ph da água próximo de 7 é sempre seguro para os peixes.";
                         }
                     }
 
@@ -564,11 +767,37 @@
         }
 
         // --- CALCULADORA DE RAÇÃO ---
+        function atualizarInfoPesoMedio() {
+            const especie = document.getElementById("especieRacao").value;
+            const fase = document.getElementById("faseRacao").value;
+            const tooltip = document.getElementById("infoPesoMedioTooltip");
+
+            const dadosFase = dadosPiscicultura.racao[especie]?.[fase];
+            if (dadosFase) {
+                const faixas = dadosFase.taxa;
+                const pesoMin = faixas[0][0];
+                const pesoMax = faixas[faixas.length - 1][1];
+                let texto = `Para a fase de ${fase}, o peso varia de ${pesoMin}g a `;
+                if (pesoMax === Infinity) {
+                    texto += `acima de ${faixas[faixas.length - 1][0]}g.`;
+                } else {
+                    texto += `${pesoMax}g.`;
+                }
+                tooltip.innerText = texto;
+            }
+        }
+
         function calcularRacao() {
             const especie = document.getElementById("especieRacao").value;
             const fase = document.getElementById("faseRacao").value;
-            const pesoMedioGramas = parseFloat(document.getElementById("pesoMedioRacao").value);
+            const unidadePeso = document.getElementById("unidadePesoRacao").value;
+            const pesoMedioInput = parseFloat(document.getElementById("pesoMedioRacao").value);
+            let pesoMedioGramas = pesoMedioInput;
             const quantidadePeixes = parseInt(document.getElementById("quantidadePeixes").value);
+            
+            if (unidadePeso === 'kg') {
+                pesoMedioGramas *= 1000; // Converte kg para g
+            }
 
             if (isNaN(pesoMedioGramas) || isNaN(quantidadePeixes) || pesoMedioGramas <= 0 || quantidadePeixes <= 0) {
                 return exibirErro("Peso médio e quantidade de peixes devem ser maiores que zero.");
@@ -589,7 +818,6 @@
 
             if (taxaAlimentacao === 0) return exibirErro(`Peso médio (${pesoMedioGramas}g) fora da faixa para a fase de ${fase}.`);
             
-            const pesoMedioKg = pesoMedioGramas / 1000;
             const biomassa = (pesoMedioGramas * quantidadePeixes) / 1000; // kg
             const consumoDiarioKg = biomassa * taxaAlimentacao;
             const porRefeicaoKg = consumoDiarioKg / refeicoes;
@@ -598,7 +826,7 @@
 
             let recomendacoesRacao = `
                 <p class="mt-2"><strong>Recomendações de Manejo da Ração:</strong></p>
-                <ul class="list-disc list-inside ml-4">
+                 <ul class="list-disc list-inside ml-4">
                    <li>Observe o comportamento dos peixes durante a alimentação. Se sobrarem ração, reduza a quantidade na próxima refeição.</li>
                     <li>Outra forma de alimentação é por meio da <i>ad libtum</i>, oferecendo alimento à vontade até que o peixe perca o interesse.
                     <li>Distribua a ração de maneira uniforme, garantindo que todos os peixes tenham acesso ao alimento. Realize a distribuição sempre com o vento às suas costas, evitando que a ração seja levada para as bordas do viveiro.</li>
@@ -613,9 +841,9 @@
                 <h3 class="text-xl font-bold text-teal-300 mb-4">📊 Resultado da Calculadora de Ração</h3>
                 <p><strong>Espécie:</strong> ${dadosPiscicultura.limitesAgua[especie].nome}</p>
                 <p><strong>Fase de Criação:</strong> ${fase.charAt(0).toUpperCase() + fase.slice(1)}</p>
-                <p><strong>Peso médio dos peixes:</strong> ${pesoMedioGramas.toFixed(2)} g (${pesoMedioKg.toFixed(2)} kg)</p>
+                <p><strong>Peso médio dos peixes:</strong> ${formatarNumeroBR(pesoMedioInput)} ${unidadePeso}</p>
                 <p><strong>Quantidade de Peixes:</strong> ${quantidadePeixes} peixes</p>
-                <p><strong>Biomassa Total:</strong> ${biomassa.toFixed(2)} kg</p>
+                <p><strong>Biomassa Total:</strong> ${biomassa.toFixed(1)} kg</p>
                 <p><strong>Taxa de Alimentação Diária:</strong> ${(taxaAlimentacao * 100).toFixed(1)}% da biomassa</p>
                 <p><strong>Nível de Proteína Recomendado:</strong> ${nivelProteina}%</p>
                 <p><strong>Número de Refeições/dia:</strong> ${refeicoes}</p>
@@ -626,6 +854,149 @@
                 <br>
                 <h4 class="text-lg font-semibold text-teal-300 mb-2">Recomendações:</h4>
                 ${recomendacoesRacao}
+            `;
+        }
+        
+        // --- CALCULADORA DE PLANO DE ARRAÇOAMENTO ---
+        function calcularPlanoRacao() {
+            const especie = document.getElementById("especiePlano").value;
+            const unidadePesoInicial = document.getElementById("unidadePesoInicialPlano").value;
+            const unidadePesoFinal = document.getElementById("unidadePesoFinalPlano").value;
+            let pesoInicial = parseFloat(document.getElementById("pesoInicialPlano").value);
+            let pesoFinal = parseFloat(document.getElementById("pesoFinalPlano").value);
+            const quantidadePeixes = parseInt(document.getElementById("quantidadePeixesPlano").value);
+            const precoSaco = parseFloat(document.getElementById("precoSacoRacao").value);
+            const pesoSaco = parseFloat(document.getElementById("pesoSacoRacao").value);
+            const duracaoCicloDefinida = parseInt(document.getElementById("duracaoCicloPlano").value);
+
+            if (unidadePesoInicial === 'kg') pesoInicial *= 1000;
+            if (unidadePesoFinal === 'kg') pesoFinal *= 1000;
+
+            if (isNaN(pesoInicial) || isNaN(pesoFinal) || isNaN(quantidadePeixes) || isNaN(precoSaco) || isNaN(pesoSaco) || pesoInicial <= 0 || pesoFinal <= 0 || quantidadePeixes <= 0 || precoSaco <= 0 || pesoSaco <= 0) {
+                return exibirErro("Todos os campos obrigatórios (exceto duração) devem ser maiores que zero.");
+            }
+            if (pesoInicial >= pesoFinal) {
+                return exibirErro("O peso final deve ser maior que o peso inicial.");
+            }
+
+            const custoRacaoPorKg = precoSaco / pesoSaco;
+            const fca = dadosPiscicultura.fcaIdeal[especie];
+            const ganhoDePesoTotal = (pesoFinal - pesoInicial) / 1000; // em kg por peixe
+            const racaoTotalPorPeixe = ganhoDePesoTotal * fca;
+            const racaoTotalLote = racaoTotalPorPeixe * quantidadePeixes;
+            const custoTotalRacao = racaoTotalLote * custoRacaoPorKg;
+
+            let racaoPorFase = {};
+            let pesoAtual = pesoInicial;
+            let diasTotaisEstimados = 0;
+
+            const todasAsFases = ['alevinagem', 'recria', 'engorda'];
+            for (const fase of todasAsFases) {
+                const dadosFase = dadosPiscicultura.racao[especie][fase];
+                racaoPorFase[dadosFase.proteina] = 0;
+
+                for (const faixa of dadosFase.taxa) {
+                    const [pesoMin, pesoMax] = faixa;
+                    if (pesoAtual < pesoMax && pesoAtual < pesoFinal) {
+                        const pesoFinalDaFaixa = Math.min(pesoMax, pesoFinal);
+                        const ganhoPesoNestaFaixa = (pesoFinalDaFaixa - pesoAtual) / 1000; // kg
+                        if (ganhoPesoNestaFaixa <= 0) continue;
+
+                        const racaoNestaFaixa = ganhoPesoNestaFaixa * fca;
+                        racaoPorFase[dadosFase.proteina] += racaoNestaFaixa;
+
+                        // Estimativa de dias
+                        const pesoMedioFaixa = (pesoAtual + pesoFinalDaFaixa) / 2;
+                        const taxaAlimentarMedia = faixa[2];
+                        const consumoDiarioMedio = (pesoMedioFaixa / 1000) * taxaAlimentarMedia;
+                        const ganhoPesoDiarioMedio = consumoDiarioMedio / fca;
+                        const diasNestaFaixa = ganhoPesoNestaFaixa / ganhoPesoDiarioMedio;
+                        diasTotaisEstimados += diasNestaFaixa;
+                        
+                        pesoAtual = pesoFinalDaFaixa;
+                    }
+                }
+            }
+            
+            let duracaoDisplay = "";
+            if (!isNaN(duracaoCicloDefinida) && duracaoCicloDefinida > 0) {
+                const gpdNecessario = (pesoFinal - pesoInicial) / duracaoCicloDefinida;
+                duracaoDisplay = `<p><strong>Duração do Ciclo (Definida):</strong> ${duracaoCicloDefinida} dias</p>
+                                  <p><strong>Ganho de Peso Diário Necessário:</strong> ${gpdNecessario.toFixed(1)} g/dia</p>`;
+            } else {
+                duracaoDisplay = `<p><strong>Duração Estimada do Ciclo:</strong> ${Math.round(diasTotaisEstimados)} dias</p>`;
+            }
+
+            let tabelaRacao = Object.keys(racaoPorFase).map(proteina => {
+                const kgTotal = racaoPorFase[proteina] * quantidadePeixes;
+                if (kgTotal > 0) {
+                    return `<tr>
+                        <td class="border border-gray-600 p-2">Ração com ${proteina}% de proteína</td>
+                        <td class="border border-gray-600 p-2">${formatarNumeroBR(kgTotal)} kg</td>
+                    </tr>`;
+                }
+                return '';
+            }).join('');
+
+            document.getElementById("resultado").innerHTML = `
+                <h3 class="text-xl font-bold text-teal-300 mb-4">📅 Plano de Arraçoamento para o Ciclo</h3>
+                <p><strong>Ração Total Estimada:</strong> ${formatarNumeroBR(racaoTotalLote)} kg</p>
+                <p><strong>Custo Total Estimado com Ração:</strong> ${formatarNumeroBR(custoTotalRacao, {moeda: true})}</p>
+                ${duracaoDisplay}
+                <br>
+                <h4 class="text-lg font-semibold text-teal-300 mb-2">Detalhamento por Tipo de Ração:</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-600">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-600 p-2 text-left">Tipo de Ração</th>
+                                <th class="border border-gray-600 p-2 text-left">Quantidade Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tabelaRacao}
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="alerta-info mt-4"><strong>Nota:</strong> Esta é uma projeção baseada em um FCA de referência. O consumo real e a duração do ciclo podem variar.</div>
+            `;
+        }
+
+        // --- CALCULADORA DE FCA ---
+        function calcularFca() {
+            const especie = document.getElementById("especieFca").value;
+            const racaoTotal = parseFloat(document.getElementById("racaoTotal").value);
+            const ganhoPesoTotal = parseFloat(document.getElementById("ganhoPesoTotal").value);
+
+            if (isNaN(racaoTotal) || isNaN(ganhoPesoTotal) || racaoTotal <= 0 || ganhoPesoTotal <= 0) {
+                return exibirErro("A Ração Total e o Ganho de Peso devem ser maiores que zero.");
+            }
+
+            const fca = racaoTotal / ganhoPesoTotal;
+            const fcaIdeal = dadosPiscicultura.fcaIdeal[especie];
+            let performance = "";
+            let classeAlerta = "";
+
+            if (fca <= fcaIdeal * 1.05) { // 5% de tolerância
+                performance = "Excelente";
+                classeAlerta = "alerta-verde";
+            } else if (fca <= fcaIdeal * 1.2) { // 20% de tolerância
+                performance = "Boa";
+                classeAlerta = "alerta-info";
+            } else {
+                performance = "Abaixo do Esperado";
+                classeAlerta = "alerta-amarelo";
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                <h3 class="text-xl font-bold text-teal-300 mb-4">📈 Resultado da Conversão Alimentar (FCA)</h3>
+                <p class="text-2xl font-bold">Seu FCA é: <span class="text-white">${fca.toFixed(1)}</span></p>
+                <p class="text-lg mt-2">Isso significa que você usou ${fca.toFixed(1)} kg de ração para cada 1 kg de peixe produzido.</p>
+                <br>
+                <div class="${classeAlerta}">
+                    <p><strong>Performance: ${performance}</strong></p>
+                    <p>O FCA ideal de referência para ${dadosPiscicultura.limitesAgua[especie].nome} é em torno de ${fcaIdeal.toFixed(1)}. Quanto menor o FCA, mais eficiente foi a sua produção.</p>
+                </div>
             `;
         }
 
@@ -675,7 +1046,7 @@
             updateCostResultsUI(results);
         }
 
-         function updateCostResultsUI(results) {
+        function updateCostResultsUI(results) {
             const resultadoDiv = document.getElementById('resultado');
             
             const cardsHTML = `
@@ -778,6 +1149,7 @@
             });
         }
 
+
         // --- FUNÇÕES DE EXPORTAÇÃO (UNIFICADAS) ---
         function compartilharWhatsApp() {
             const resultadoElement = document.getElementById('resultado');
@@ -832,5 +1204,4 @@
 
     </script>
 </body>
-
 </html>
